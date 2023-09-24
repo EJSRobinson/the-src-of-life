@@ -1,0 +1,11 @@
+logs
+*.log*
+npm-debug.log*
+yarn.lock
+node_modules
+.npm
+.node_repl_history
+.vscode
+package-lock.json
+.DS_Store
+dist/

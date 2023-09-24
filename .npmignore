@@ -1,0 +1,12 @@
+node_modules/
+src/
+package-lock.json
+yarn.lock
+.DS_Store
+.vscode
+.gitignore
+.npmignore
+ts*.json
+.github
+.prettierrc
+.eslintrc.js
