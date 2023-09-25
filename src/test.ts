@@ -1,6 +1,6 @@
 import ws281x from 'rpi-ws281x-native';
 
-const ledLength = 50;
+const ledLength = 200;
 
 const channel = ws281x(ledLength, { stripType: ws281x.stripType.WS2811, gpio: 21, brightness: 255 });
 
