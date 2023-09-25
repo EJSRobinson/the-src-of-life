@@ -20,7 +20,7 @@ setInterval(()=>{
   const colorArray = channel.array;
   for (let i = 0; i < channel.count; i++) {
     // colorArray[i] = 0xFF0000;
-    colorArray[i] = colorwheel((0 + i) % 256);
+    colorArray[i] = colorwheel((offset + i) % 256);
   }
   offset = (offset + 1) % 256;
   ws281x.render(colorArray);
