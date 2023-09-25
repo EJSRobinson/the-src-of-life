@@ -14,9 +14,9 @@ function colorwheel(pos) {
 function rgb2Int(r, g, b) {
   return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 }
-
+let offset = 0;
+console.log('START');
 setInterval(()=>{
-  let offset = 0;
   const colorArray = channel.array;
   for (let i = 0; i < channel.count; i++) {
     // colorArray[i] = 0xFF0000;
