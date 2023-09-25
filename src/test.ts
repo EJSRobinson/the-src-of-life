@@ -2,7 +2,7 @@ import ws281x from 'rpi-ws281x-native';
 
 const channel = ws281x(50, { stripType: ws281x.stripType.WS2811, gpio: 21, brightness: 255 });
 
-function iteratorToRainbowHex(i: number): string {
+function iteratorToRainbowHex(i: number): number {
   // Ensure that i is within the range [0, 50]
   i = Math.max(0, Math.min(50, i));
 
@@ -51,14 +51,13 @@ function iteratorToRainbowHex(i: number): string {
   const greenHex = green.toString(16).padStart(2, '0');
   const blueHex = blue.toString(16).padStart(2, '0');
 
-  return `0x${greenHex}${redHex}${blueHex}`;
+  return parseInt(`${greenHex}${redHex}${blueHex}`, 16);
 }
 
 const colorArray = channel.array;
 for (let i = 0; i < channel.count; i++) {
   // colorArray[i] = 0xFF0000;
   colorArray[i] = iteratorToRainbowHex(i);
-  console.log(colorArray[i]);
 }
 
 ws281x.render();
