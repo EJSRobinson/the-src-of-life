@@ -1,4 +1,4 @@
-import ws281x from 'rpi-ws281x';
+const ws281x = require('rpi-ws281x');
 
 class Example {
     constructor() {
