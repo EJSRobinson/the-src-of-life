@@ -51,7 +51,7 @@ function iteratorToRainbowHex(i: number): string {
   const greenHex = green.toString(16).padStart(2, '0');
   const blueHex = blue.toString(16).padStart(2, '0');
 
-  return `#${redHex}${greenHex}${blueHex}`;
+  return `0x${redHex}${greenHex}${blueHex}`;
 }
 
 const colorArray = channel.array;
