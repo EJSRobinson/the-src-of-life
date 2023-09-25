@@ -56,7 +56,7 @@ function iteratorToRainbowHex(i: number): string {
 
 const colorArray = channel.array;
 for (let i = 0; i < channel.count; i++) {
-  colorArray[i] = iteratorToRainbowHex(i);
+  colorArray[i] = 0xFF0000;
 }
 
 ws281x.render();
