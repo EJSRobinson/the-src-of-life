@@ -51,12 +51,14 @@ function iteratorToRainbowHex(i: number): string {
   const greenHex = green.toString(16).padStart(2, '0');
   const blueHex = blue.toString(16).padStart(2, '0');
 
-  return `0x${redHex}${greenHex}${blueHex}`;
+  return `0x${greenHex}${redHex}${blueHex}`;
 }
 
 const colorArray = channel.array;
 for (let i = 0; i < channel.count; i++) {
-  colorArray[i] = 0xFF0000;
+  // colorArray[i] = 0xFF0000;
+  colorArray[i] = iteratorToRainbowHex(i);
+  console.log(colorArray[i]);
 }
 
 ws281x.render();
