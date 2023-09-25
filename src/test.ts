@@ -15,10 +15,13 @@ function rgb2Int(r, g, b) {
   return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 }
 
-const colorArray = channel.array;
-for (let i = 0; i < channel.count; i++) {
-  // colorArray[i] = 0xFF0000;
-  colorArray[i] = colorwheel((0 + i) % 256);
-}
-
-ws281x.render(colorArray);
+setInterval(()=>{
+  let offset = 0;
+  const colorArray = channel.array;
+  for (let i = 0; i < channel.count; i++) {
+    // colorArray[i] = 0xFF0000;
+    colorArray[i] = colorwheel((0 + i) % 256);
+  }
+  offset = (offset + 1) % 256;
+  ws281x.render(colorArray);
+}, 1000 / 30)
