@@ -21,4 +21,4 @@ for (let i = 0; i < channel.count; i++) {
   colorArray[i] = colorwheel((0 + i) % 256);
 }
 
-ws281x.render();
+ws281x.render(colorArray);
