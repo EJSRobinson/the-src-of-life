@@ -1,7 +1,6 @@
 import ws281x from 'rpi-ws281x';
 
 class Example {
-    config: any;
     constructor() {
         this.config = {};
 
