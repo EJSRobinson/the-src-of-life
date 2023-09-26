@@ -8,6 +8,7 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
+// eslint-disable-next-line no-console
 console.log('START');
 setInterval(()=>{
   const colorArray = channel.array;
