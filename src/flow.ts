@@ -1,4 +1,5 @@
 import ws281x from 'rpi-ws281x-native';
+import { colorwheel } from './rainbow';
 
 const ledLength = 200;
 
@@ -18,7 +19,7 @@ const getArray = (offset: number) => {
       if (ledNumber > channel.count) {
         ledNumber = ledNumber - channel.count;
       }
-      colorArray[ledNumber] = 0xFFFFFF;
+      colorArray[ledNumber] = colorwheel((offset + i) % channel.count);
     }
   }
 }
