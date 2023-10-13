@@ -18,7 +18,7 @@ const snakeOpts = {
 snakeOpts.seperation = Math.floor(channel.count / snakeOpts.snakes);
 const clearArray = () => {
     for (let i = 0; i < channel.count; i++) {
-        colorArray[i] = 0x00FF00;
+        colorArray[i] = 0x00ff99;
     }
 };
 const genSnake = (offset, array, snakeLength, reverse) => {
