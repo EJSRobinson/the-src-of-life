@@ -9,7 +9,7 @@ const ledLength = 195;
 const channel = (0, rpi_ws281x_native_1.default)(ledLength, { stripType: rpi_ws281x_native_1.default.stripType.WS2811, gpio: 21, brightness: 255 });
 // SETTINGS;
 const colorSpeed = 100;
-const speed = 13;
+const speed = 5;
 const snakeOpts = {
     snakes: 10,
     snakeLength: 2,
