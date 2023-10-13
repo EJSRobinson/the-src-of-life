@@ -8,7 +8,7 @@ const channel = ws281x(ledLength, { stripType: ws281x.stripType.WS2811, gpio: 21
 const colorSpeed = 100;
 const speed = 19;
 const snakeOpts = {
-  snakes: 13,
+  snakes: 5,
   snakeLength: 5,
   seperation: 0,
 }
@@ -17,7 +17,7 @@ snakeOpts.seperation = Math.floor(channel.count / snakeOpts.snakes);
 
 const clearArray = () => {
   for (let i = 0; i < channel.count; i++) {
-    colorArray[i] = 0x000000;
+    colorArray[i] = 0xFF0000;
   }
 }
 
