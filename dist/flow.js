@@ -10,8 +10,8 @@ const channel = (0, rpi_ws281x_native_1.default)(ledLength, { stripType: rpi_ws2
 // SETTINGS;
 const speed = 20;
 const snakeOpts = {
-    snakes: 10,
-    snakeLength: 2,
+    snakes: 2,
+    snakeLength: 4,
     seperation: 0,
 };
 snakeOpts.seperation = Math.floor(channel.count / snakeOpts.snakes);
