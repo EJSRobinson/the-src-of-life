@@ -10,7 +10,7 @@ const channel = (0, rpi_ws281x_native_1.default)(ledLength, { stripType: rpi_ws2
 // SETTINGS;
 const speed = 30;
 const snakeOpts = {
-    snakes: 8,
+    snakes: 9,
     snakeLength: 3,
     seperation: 0,
 };
