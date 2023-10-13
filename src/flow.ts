@@ -32,8 +32,8 @@ setInterval(()=>{
 const colorArray = channel.array;
 
 const snakeOpts = {
-  snakes: 20,
-  snakeLength: 2,
+  snakes: 15,
+  snakeLength: 1,
   seperation: 0,
 }
 
