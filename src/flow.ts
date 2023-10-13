@@ -5,7 +5,7 @@ const ledLength = 195;
 const channel = ws281x(ledLength, { stripType: ws281x.stripType.WS2811, gpio: 21, brightness: 255 });
 
 // SETTINGS;
-const speed = 30;
+const speed = 100;
 const snakeOpts = {
   snakes: 10,
   snakeLength: 2,
