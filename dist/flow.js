@@ -8,7 +8,7 @@ const rainbow_1 = require("./rainbow");
 const ledLength = 195;
 const channel = (0, rpi_ws281x_native_1.default)(ledLength, { stripType: rpi_ws281x_native_1.default.stripType.WS2811, gpio: 21, brightness: 255 });
 // SETTINGS;
-const speed = 15;
+const speed = 20;
 const snakeOpts = {
     snakes: 10,
     snakeLength: 2,
@@ -21,7 +21,12 @@ const clearArray = () => {
     }
 };
 const genSnake = (offset, array, snakeLength) => {
-    for (let i = offset; i < offset + snakeLength; i++) {
+    const reverse = true;
+    let localOffset = JSON.parse(JSON.stringify(offset));
+    if (reverse) {
+        localOffset = channel.count - offset;
+    }
+    for (let i = localOffset; i < localOffset + snakeLength; i++) {
         for (let j = 0; j < snakeLength; j++) {
             let ledNumber = i + j;
             if (ledNumber > channel.count) {

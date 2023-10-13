@@ -5,7 +5,7 @@ const ledLength = 195;
 const channel = ws281x(ledLength, { stripType: ws281x.stripType.WS2811, gpio: 21, brightness: 255 });
 
 // SETTINGS;
-const speed = 15;
+const speed = 20;
 const snakeOpts = {
   snakes: 10,
   snakeLength: 2,
@@ -21,7 +21,12 @@ const clearArray = () => {
 }
 
 const genSnake = (offset: number, array: number[], snakeLength: number) => {
-  for (let i = offset; i < offset + snakeLength; i++) {
+  const reverse = true;
+  let localOffset = JSON.parse(JSON.stringify(offset));
+  if (reverse) {
+    localOffset = channel.count - offset;
+  }
+  for (let i = localOffset; i < localOffset + snakeLength; i++) {
     for (let j = 0; j < snakeLength; j++) {
       let ledNumber = i + j;
       if (ledNumber > channel.count) {
