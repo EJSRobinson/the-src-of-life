@@ -48,7 +48,7 @@ const colorArray = channel.array;
 setInterval(()=>{
   clearArray();
   for (let i = 0; i < snakeOpts.snakes; i++) {
-    genSnake((offset + (i * snakeOpts.seperation)) % channel.count, colorArray, snakeOpts.snakeLength, i % 2 === 0);
+    genSnake((offset + (i * snakeOpts.seperation)) % channel.count, colorArray, snakeOpts.snakeLength, false);
   }
   ws281x.render(colorArray);
   offset = (offset + 1) % channel.count;

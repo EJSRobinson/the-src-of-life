@@ -44,7 +44,7 @@ const colorArray = channel.array;
 setInterval(() => {
     clearArray();
     for (let i = 0; i < snakeOpts.snakes; i++) {
-        genSnake((offset + (i * snakeOpts.seperation)) % channel.count, colorArray, snakeOpts.snakeLength, i % 2 === 0);
+        genSnake((offset + (i * snakeOpts.seperation)) % channel.count, colorArray, snakeOpts.snakeLength, false);
     }
     rpi_ws281x_native_1.default.render(colorArray);
     offset = (offset + 1) % channel.count;
