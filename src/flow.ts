@@ -1,7 +1,7 @@
 import ws281x from 'rpi-ws281x-native';
 import { colorwheel } from './rainbow';
 
-const ledLength = 200;
+const ledLength = 195;
 
 const channel = ws281x(ledLength, { stripType: ws281x.stripType.WS2811, gpio: 21, brightness: 255 });
 
@@ -33,9 +33,11 @@ const colorArray = channel.array;
 
 const snakeOpts = {
   snakes: 3,
-  snakeLength: 5,
-  seperation: 40,
+  snakeLength: 3,
+  seperation: 0,
 }
+
+snakeOpts.seperation = Math.floor(channel.count / snakeOpts.snakes);
 
 setInterval(()=>{
   clearArray();
