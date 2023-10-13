@@ -23,6 +23,6 @@ setInterval(()=>{
     // colorArray[i] = 0xFF0000;
     colorArray[i] = colorwheel((offset + i) % 256);
   }
-  offset = (offset + 1) % 256;
+  offset = (offset + 1) % channel.count;
   ws281x.render(colorArray);
 }, 1000 / 30)

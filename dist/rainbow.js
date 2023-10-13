@@ -34,6 +34,6 @@ setInterval(() => {
         // colorArray[i] = 0xFF0000;
         colorArray[i] = colorwheel((offset + i) % 256);
     }
-    offset = (offset + 1) % 256;
+    offset = (offset + 1) % channel.count;
     rpi_ws281x_native_1.default.render(colorArray);
 }, 1000 / 30);
