@@ -28,7 +28,7 @@ let colorOffset = 0;
 
 setInterval(()=>{
   colorOffset = (colorOffset + 1) % 256;
-}, 1000 / 100)
+}, 1000 / 10)
 setInterval(()=>{
   getArray(offset);
   ws281x.render(colorArray);
