@@ -8,6 +8,7 @@ const rainbow_1 = require("./rainbow");
 const ledLength = 195;
 const channel = (0, rpi_ws281x_native_1.default)(ledLength, { stripType: rpi_ws281x_native_1.default.stripType.WS2811, gpio: 21, brightness: 255 });
 // SETTINGS;
+const colorSpeed = 100;
 const speed = 30;
 const snakeOpts = {
     snakes: 9,
@@ -39,7 +40,7 @@ let offset = 0;
 let colorOffset = 0;
 setInterval(() => {
     colorOffset = (colorOffset + 1) % 256;
-}, 1000 / 10);
+}, 1000 / colorSpeed);
 const colorArray = channel.array;
 setInterval(() => {
     clearArray();

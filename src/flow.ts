@@ -5,6 +5,7 @@ const ledLength = 195;
 const channel = ws281x(ledLength, { stripType: ws281x.stripType.WS2811, gpio: 21, brightness: 255 });
 
 // SETTINGS;
+const colorSpeed = 100;
 const speed = 30;
 const snakeOpts = {
   snakes: 9,
@@ -41,7 +42,7 @@ let colorOffset = 0;
 
 setInterval(()=>{
   colorOffset = (colorOffset + 1) % 256;
-}, 1000 / 10)
+}, 1000 / colorSpeed)
 
 const colorArray = channel.array;
 
