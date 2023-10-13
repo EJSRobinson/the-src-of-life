@@ -19,11 +19,16 @@ const getArray = (offset: number) => {
       if (ledNumber > channel.count) {
         ledNumber = ledNumber - channel.count;
       }
-      colorArray[ledNumber] = colorwheel((offset + i) % channel.count);
+      colorArray[ledNumber] = colorwheel((colorOffset + i));
     }
   }
 }
 let offset = 0;
+let colorOffset = 0;
+
+setInterval(()=>{
+  colorOffset = (colorOffset + 1) % channel.count;
+}, 1000 / 70)
 setInterval(()=>{
   getArray(offset);
   ws281x.render(colorArray);
