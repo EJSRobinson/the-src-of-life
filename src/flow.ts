@@ -9,7 +9,7 @@ const colorSpeed = 100;
 const speed = 33.5;
 const snakeOpts = {
   snakes: 13,
-  snakeLength: 6,
+  snakeLength: 5,
   seperation: 0,
 }
 
