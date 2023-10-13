@@ -8,8 +8,8 @@ const channel = ws281x(ledLength, { stripType: ws281x.stripType.WS2811, gpio: 21
 const colorSpeed = 100;
 const speed = 30;
 const snakeOpts = {
-  snakes: 6,
-  snakeLength: 3,
+  snakes: 1,
+  snakeLength: 8,
   seperation: 0,
 }
 
