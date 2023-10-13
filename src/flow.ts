@@ -27,8 +27,8 @@ let offset = 0;
 let colorOffset = 0;
 
 setInterval(()=>{
-  colorOffset = (colorOffset + 1) % channel.count;
-}, 1000 / 70)
+  colorOffset = (colorOffset + 1) % 256;
+}, 1000 / 100)
 setInterval(()=>{
   getArray(offset);
   ws281x.render(colorArray);
