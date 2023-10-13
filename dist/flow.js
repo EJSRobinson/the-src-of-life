@@ -30,8 +30,8 @@ setInterval(() => {
 }, 1000 / 10);
 const colorArray = channel.array;
 const snakeOpts = {
-    snakes: 3,
-    snakeLength: 3,
+    snakes: 20,
+    snakeLength: 2,
     seperation: 0,
 };
 snakeOpts.seperation = Math.floor(channel.count / snakeOpts.snakes);
