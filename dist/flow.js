@@ -20,8 +20,7 @@ const clearArray = () => {
         colorArray[i] = 0x000000;
     }
 };
-const genSnake = (offset, array, snakeLength) => {
-    const reverse = true;
+const genSnake = (offset, array, snakeLength, reverse) => {
     let localOffset = JSON.parse(JSON.stringify(offset));
     if (reverse) {
         localOffset = channel.count - offset;
@@ -45,7 +44,7 @@ const colorArray = channel.array;
 setInterval(() => {
     clearArray();
     for (let i = 0; i < snakeOpts.snakes; i++) {
-        genSnake((offset + (i * snakeOpts.seperation)) % channel.count, colorArray, snakeOpts.snakeLength);
+        genSnake((offset + (i * snakeOpts.seperation)) % channel.count, colorArray, snakeOpts.snakeLength, i % 2 === 0);
     }
     rpi_ws281x_native_1.default.render(colorArray);
     offset = (offset + 1) % channel.count;

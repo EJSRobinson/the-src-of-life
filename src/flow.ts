@@ -20,8 +20,7 @@ const clearArray = () => {
   }
 }
 
-const genSnake = (offset: number, array: number[], snakeLength: number) => {
-  const reverse = true;
+const genSnake = (offset: number, array: number[], snakeLength: number, reverse: boolean) => {
   let localOffset = JSON.parse(JSON.stringify(offset));
   if (reverse) {
     localOffset = channel.count - offset;
@@ -49,7 +48,7 @@ const colorArray = channel.array;
 setInterval(()=>{
   clearArray();
   for (let i = 0; i < snakeOpts.snakes; i++) {
-    genSnake((offset + (i * snakeOpts.seperation)) % channel.count, colorArray, snakeOpts.snakeLength);
+    genSnake((offset + (i * snakeOpts.seperation)) % channel.count, colorArray, snakeOpts.snakeLength, i % 2 === 0);
   }
   ws281x.render(colorArray);
   offset = (offset + 1) % channel.count;
