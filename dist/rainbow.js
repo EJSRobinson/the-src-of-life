@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.colorwheel = void 0;
 const rpi_ws281x_native_1 = __importDefault(require("rpi-ws281x-native"));
-const ledLength = 194;
+const ledLength = 256;
 const channel = (0, rpi_ws281x_native_1.default)(ledLength, { stripType: rpi_ws281x_native_1.default.stripType.WS2811, gpio: 21, brightness: 255 });
 function colorwheel(pos) {
     pos = 255 - pos;
