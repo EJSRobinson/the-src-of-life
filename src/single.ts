@@ -10,5 +10,5 @@ for (let i = 0; i < channel.count; i++) {
   colorArray[i] = 0x000000;
 }
 
-colorArray[193] = 0xFF0000;
+colorArray[194] = 0xFF0000;
 ws281x.render(colorArray);
