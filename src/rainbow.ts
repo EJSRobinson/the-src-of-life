@@ -25,4 +25,4 @@ setInterval(()=>{
   }
   offset = (offset + 1) % channel.count;
   ws281x.render(colorArray);
-}, 1000 / 30)
+}, 1000 / 20)

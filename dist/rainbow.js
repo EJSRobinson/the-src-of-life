@@ -36,4 +36,4 @@ setInterval(() => {
     }
     offset = (offset + 1) % channel.count;
     rpi_ws281x_native_1.default.render(colorArray);
-}, 1000 / 30);
+}, 1000 / 20);
