@@ -27,11 +27,8 @@ function colorwheel(pos) {
 exports.colorwheel = colorwheel;
 const fullStop = (interval) => {
     console.log('STOP');
-    if (interval) {
-        clearInterval(interval);
-        interval = null;
-        console.log('Interval cleared.');
-    }
+    clearInterval(interval);
+    interval = null;
     const colorArray = channel.array;
     for (let i = 0; i < channel.count; i++) {
         colorArray[i] = 0x000000;
