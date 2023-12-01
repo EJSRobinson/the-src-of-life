@@ -20,6 +20,7 @@ export const fullStop = (interval: NodeJS.Timeout | null) => {
   if (interval) {
     clearInterval(interval);
     interval = null;
+    console.log('Interval cleared.')
   }
   const colorArray = channel.array;
   for (let i = 0; i < channel.count; i++) {

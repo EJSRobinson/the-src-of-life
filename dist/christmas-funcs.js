@@ -30,6 +30,7 @@ const fullStop = (interval) => {
     if (interval) {
         clearInterval(interval);
         interval = null;
+        console.log('Interval cleared.');
     }
     const colorArray = channel.array;
     for (let i = 0; i < channel.count; i++) {
