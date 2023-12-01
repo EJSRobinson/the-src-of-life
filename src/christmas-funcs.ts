@@ -1,8 +1,8 @@
 import ws281x from 'rpi-ws281x-native';
 
-const ledLength = 12;
+const ledLength = 50;
 
-const channel = ws281x(ledLength, { stripType: 'ws2812', gpio: 21, brightness: 255 });
+const channel = ws281x(ledLength, { stripType: ws281x.stripType.WS2811, gpio: 21, brightness: 255 });
 
 function rgb2Int(r, g, b) {
   return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
@@ -35,9 +35,28 @@ export const rainbow = (controlObject: { controlInterval: NodeJS.Timeout | null 
     const colorArray = channel.array;
     for (let i = 0; i < channel.count; i++) {
       // colorArray[i] = 0xFF0000;
-      colorArray[i] = colorwheel((offset + i) % ledLength);
+      colorArray[i] = colorwheel((offset + i) % 256);
     }
     offset = (offset + 1) % channel.count;
     ws281x.render(colorArray);
   }, 1000 / 20);
+}
+
+const mobiusColor = (step: number) => {
+  const s1 = { r: 44, g: 170, b: 225};
+  const s2 = { r: 67, g: 81, b: 155};
+  const diff = { r: s2.r - s1.r, g: s2.g - s1.g, b: s2.b - s1.b };
+  const totalStep = step / ledLength;
+  const result = { r: s1.r + diff.r * totalStep, g: s1.g + diff.g * totalStep, b: s1.b + diff.b * totalStep };
+  return rgb2Int(result.r, result.g, result.b);
+}
+
+export const mobiusStart = (controlObject: { controlInterval: NodeJS.Timeout | null }) => {
+  console.log('START Mobius');
+  fullStop(controlObject);
+  const colorArray = channel.array;
+  for (let i = 0; i < channel.count; i++) {
+    colorArray[i] = mobiusColor(i);
+  }
+  ws281x.render(colorArray);
 }

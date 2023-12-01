@@ -10,3 +10,6 @@ export declare const fullStop: (controlObject: {
 export declare const rainbow: (controlObject: {
     controlInterval: NodeJS.Timeout | null;
 }) => void;
+export declare const mobiusStart: (controlObject: {
+    controlInterval: NodeJS.Timeout | null;
+}) => void;
