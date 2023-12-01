@@ -36,7 +36,7 @@ client.on('connect', () => {
 client.on('message', (topic, message) => {
   const msg = JSON.parse(message.toString());
   switch (msg.uid) {
-    case '002F2C32':
+    case '0031C26E':
       msg.button_AI && mobiusStart(controlObject);
       msg.button_B1 && mobiusStart(controlObject);
       msg.button_A0 && fullStop(controlObject);

@@ -35,7 +35,7 @@ client.on('connect', () => {
 client.on('message', (topic, message) => {
     const msg = JSON.parse(message.toString());
     switch (msg.uid) {
-        case '002F2C32':
+        case '0031C26E':
             msg.button_AI && (0, christmas_funcs_1.mobiusStart)(controlObject);
             msg.button_B1 && (0, christmas_funcs_1.mobiusStart)(controlObject);
             msg.button_A0 && (0, christmas_funcs_1.fullStop)(controlObject);
