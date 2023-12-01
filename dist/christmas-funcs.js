@@ -104,5 +104,21 @@ const mobiusStart = async (controlObject) => {
     await chore();
     clearInterval(controlObject.controlInterval);
     controlObject.controlInterval = null;
+    chore = () => {
+        return new Promise((resolve) => {
+            controlObject.controlInterval = setInterval(() => {
+                const colorArray = channel.array;
+                for (let i = 0; i < channel.count; i++) {
+                    colorArray[i] = rgb2Int(0, 0, 255);
+                }
+                for (let i = 0; i < 5; i++) {
+                    colorArray[Math.floor(Math.random() * ledLength)] = rgb2Int(255, 255, 255);
+                }
+                rpi_ws281x_native_1.default.render(colorArray);
+            }, 25);
+            resolve();
+        });
+    };
+    await chore();
 };
 exports.mobiusStart = mobiusStart;

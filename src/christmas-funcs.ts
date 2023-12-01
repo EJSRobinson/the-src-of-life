@@ -102,4 +102,22 @@ export const mobiusStart = async (controlObject: { controlInterval: NodeJS.Timeo
 
   clearInterval(controlObject.controlInterval as any);
   controlObject.controlInterval = null
+
+  chore = () => {
+    return new Promise<void>((resolve) => {
+      controlObject.controlInterval = setInterval(()=>{
+        const colorArray = channel.array;
+        for (let i = 0; i < channel.count; i++) {
+          colorArray[i] = rgb2Int(0, 0, 255);
+        }
+        for (let i = 0; i < 5; i++) {
+          colorArray[Math.floor(Math.random() * ledLength)] = rgb2Int(255, 255, 255);
+        }
+        ws281x.render(colorArray);
+      }, 25);
+      resolve();
+    })
+  }
+
+  await chore();
 }
