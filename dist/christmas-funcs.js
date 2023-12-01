@@ -69,7 +69,7 @@ const mobiusStart = async (controlObject) => {
             let len = 1;
             controlObject.controlInterval = setInterval(() => {
                 for (let i = 0; i < len; i++) {
-                    colorArray[i] = 0x999999;
+                    colorArray[i] = 0x666666;
                 }
                 rpi_ws281x_native_1.default.render(colorArray);
                 len = len + 1;
