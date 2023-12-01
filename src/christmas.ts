@@ -59,8 +59,3 @@ client.subscribe('christmas/#', { qos: 0 }, (error) => {
   }
 })
 
-
-setInterval(()=>{
-  console.log(controlObject.controlInterval)
-}, 500)
-
