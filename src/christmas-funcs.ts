@@ -2,7 +2,7 @@ import ws281x from 'rpi-ws281x-native';
 
 const ledLength = 12;
 
-const channel = ws281x(ledLength, { stripType: ws281x.stripType.WS2811, gpio: 21, brightness: 255 });
+const channel = ws281x(ledLength, { stripType: ws281x.stripType.WS2812, gpio: 21, brightness: 255 });
 
 function rgb2Int(r, g, b) {
   return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
@@ -31,6 +31,7 @@ export const fullStop = (interval: NodeJS.Timeout | null) => {
 export const rainbow = (interval: NodeJS.Timeout | null) => {
   console.log('START Rainbow');
   let offset = 0;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interval = setInterval(()=>{
     const colorArray = channel.array;
     for (let i = 0; i < channel.count; i++) {
