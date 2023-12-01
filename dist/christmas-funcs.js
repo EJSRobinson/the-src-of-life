@@ -64,6 +64,7 @@ const mobiusStart = async (controlObject) => {
     console.log('START Mobius');
     (0, exports.fullStop)(controlObject);
     let chore = async () => {
+        console.log('1');
         const colorArray = channel.array;
         let len = 1;
         controlObject.controlInterval = setInterval(() => {
@@ -79,6 +80,7 @@ const mobiusStart = async (controlObject) => {
     };
     await chore();
     chore = async () => {
+        console.log('2');
         const colorArray = channel.array;
         for (let i = 0; i < channel.count; i++) {
             colorArray[i] = mobiusColor(i);

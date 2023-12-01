@@ -57,6 +57,7 @@ export const mobiusStart = async (controlObject: { controlInterval: NodeJS.Timeo
   fullStop(controlObject);
 
   let chore = async () => {
+    console.log('1')
     const colorArray = channel.array;
     let len = 1;
     controlObject.controlInterval = setInterval(()=>{
@@ -74,6 +75,7 @@ export const mobiusStart = async (controlObject: { controlInterval: NodeJS.Timeo
   await chore();
 
   chore = async () => {
+    console.log('2')
     const colorArray = channel.array;
     for (let i = 0; i < channel.count; i++) {
       colorArray[i] = mobiusColor(i);
