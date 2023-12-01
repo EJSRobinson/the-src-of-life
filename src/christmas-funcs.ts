@@ -63,17 +63,18 @@ export const mobiusStart = async (controlObject: { controlInterval: NodeJS.Timeo
       for (let i = 0; i < len; i++) {
         colorArray[i] = 0xFFFFFF;
       }
+      ws281x.render(colorArray);
       len = len + 1;
       if (len > channel.count) {
         return;
       }
     }, 100);
-    ws281x.render(colorArray);
   })()
   await (async () => {
     const colorArray = channel.array;
     for (let i = 0; i < channel.count; i++) {
       colorArray[i] = mobiusColor(i);
     }
+    ws281x.render(colorArray);
   })()
 }

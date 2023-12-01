@@ -70,18 +70,19 @@ const mobiusStart = async (controlObject) => {
             for (let i = 0; i < len; i++) {
                 colorArray[i] = 0xFFFFFF;
             }
+            rpi_ws281x_native_1.default.render(colorArray);
             len = len + 1;
             if (len > channel.count) {
                 return;
             }
         }, 100);
-        rpi_ws281x_native_1.default.render(colorArray);
     })();
     await (async () => {
         const colorArray = channel.array;
         for (let i = 0; i < channel.count; i++) {
             colorArray[i] = mobiusColor(i);
         }
+        rpi_ws281x_native_1.default.render(colorArray);
     })();
 };
 exports.mobiusStart = mobiusStart;
