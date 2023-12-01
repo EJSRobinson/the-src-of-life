@@ -1,5 +1,49 @@
-import mqtt from 'mqtt'
-import { fullStop, rainbow } from './christmas-funcs'
+import mqtt from 'mqtt';
+import ws281x from 'rpi-ws281x-native';
+
+// eslint-disable-next-line prefer-const
+let interval: NodeJS.Timeout | null = null;
+
+const ledLength = 12;
+
+const channel = ws281x(ledLength, { stripType: 'ws2812', gpio: 21, brightness: 255 });
+
+function rgb2Int(r, g, b) {
+  return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
+}
+
+export function colorwheel(pos) {
+  pos = 255 - pos;
+  if (pos < 85) { return rgb2Int(255 - pos * 3, 0, pos * 3); }
+  else if (pos < 170) { pos -= 85; return rgb2Int(0, pos * 3, 255 - pos * 3); }
+  else { pos -= 170; return rgb2Int(pos * 3, 255 - pos * 3, 0); }
+}
+
+export const fullStop = () => {
+  console.log('STOP');
+  clearInterval(interval as any);
+  interval = null;
+  const colorArray = channel.array;
+  for (let i = 0; i < channel.count; i++) {
+    colorArray[i] = 0x000000;
+  }
+  ws281x.render(colorArray);
+}
+
+export const rainbow = () => {
+  console.log('START Rainbow');
+  let offset = 0;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  interval = setInterval(()=>{
+    const colorArray = channel.array;
+    for (let i = 0; i < channel.count; i++) {
+      // colorArray[i] = 0xFF0000;
+      colorArray[i] = colorwheel((offset + i) % ledLength);
+    }
+    offset = (offset + 1) % channel.count;
+    ws281x.render(colorArray);
+  }, 1000 / 20);
+}
 
 const protocol = 'mqtts'
 const host = 'hot-bat-53.mobiusflow.io'
@@ -18,8 +62,7 @@ const client = mqtt.connect(connectUrl, {
 })
 
 let pingPong: NodeJS.Timeout | null = null;
-// eslint-disable-next-line prefer-const
-let controlInterval: NodeJS.Timeout | null = null;
+
 
 client.on('connect', () => {
   console.log('Connected to', connectUrl);
@@ -38,10 +81,10 @@ client.on('message', (topic, message) => {
   const msg = JSON.parse(message.toString());
   switch (msg.uid) {
     case '002F2C32':
-      msg.button_AI && rainbow(controlInterval);
-      msg.button_B1 && rainbow(controlInterval);
-      msg.button_A0 && fullStop(controlInterval);
-      msg.button_B0 && fullStop(controlInterval);
+      msg.button_AI && rainbow();
+      msg.button_B1 && rainbow();
+      msg.button_A0 && fullStop();
+      msg.button_B0 && fullStop();
       break;
   }
 })
@@ -62,5 +105,5 @@ client.subscribe('christmas/#', { qos: 0 }, (error) => {
 
 
 setInterval(()=>{
-  console.log(controlInterval)
+  console.log(interval)
 }, 500)
