@@ -28,6 +28,7 @@ export const fullStop = (controlObject: { controlInterval: NodeJS.Timeout | null
 
 export const rainbow = (controlObject: { controlInterval: NodeJS.Timeout | null }) => {
   console.log('START Rainbow');
+  fullStop(controlObject);
   let offset = 0;
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   controlObject.controlInterval = setInterval(()=>{

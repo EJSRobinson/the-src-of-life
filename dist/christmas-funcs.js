@@ -38,6 +38,7 @@ const fullStop = (controlObject) => {
 exports.fullStop = fullStop;
 const rainbow = (controlObject) => {
     console.log('START Rainbow');
+    (0, exports.fullStop)(controlObject);
     let offset = 0;
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     controlObject.controlInterval = setInterval(() => {
