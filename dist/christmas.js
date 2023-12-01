@@ -35,11 +35,26 @@ client.on('connect', () => {
 client.on('message', (topic, message) => {
     const msg = JSON.parse(message.toString());
     switch (msg.uid) {
+        // BLUE
         case '0031C26E':
             msg.button_AI && (0, christmas_funcs_1.mobiusStart)(controlObject);
             msg.button_B1 && (0, christmas_funcs_1.mobiusStart)(controlObject);
             msg.button_A0 && (0, christmas_funcs_1.fullStop)(controlObject);
             msg.button_B0 && (0, christmas_funcs_1.fullStop)(controlObject);
+            break;
+        // SHAWN
+        case '002F4833':
+            msg.button_AI && (0, christmas_funcs_1.mobiusStart)(controlObject);
+            msg.button_B1 && (0, christmas_funcs_1.mobiusStart)(controlObject);
+            msg.button_A0 && (0, christmas_funcs_1.mobiusStart)(controlObject);
+            msg.button_B0 && (0, christmas_funcs_1.mobiusStart)(controlObject);
+            break;
+        // WHITE
+        case '002F2C32':
+            msg.button_AI && christmas_funcs_1.snakes.push({ head: 0, color: { r: 255, g: 0, b: 0 } });
+            msg.button_B1 && christmas_funcs_1.snakes.push({ head: 0, color: { r: 255, g: 0, b: 0 } });
+            msg.button_A0 && christmas_funcs_1.snakes.push({ head: 0, color: { r: 255, g: 0, b: 0 } });
+            msg.button_B0 && christmas_funcs_1.snakes.push({ head: 0, color: { r: 255, g: 0, b: 0 } });
             break;
     }
 });

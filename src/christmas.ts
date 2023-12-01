@@ -1,5 +1,5 @@
 import mqtt from 'mqtt'
-import { fullStop, mobiusStart } from './christmas-funcs'
+import { fullStop, mobiusStart, snakes } from './christmas-funcs'
 
 const protocol = 'mqtts'
 const host = 'hot-bat-53.mobiusflow.io'
@@ -36,11 +36,26 @@ client.on('connect', () => {
 client.on('message', (topic, message) => {
   const msg = JSON.parse(message.toString());
   switch (msg.uid) {
+    // BLUE
     case '0031C26E':
       msg.button_AI && mobiusStart(controlObject);
       msg.button_B1 && mobiusStart(controlObject);
       msg.button_A0 && fullStop(controlObject);
       msg.button_B0 && fullStop(controlObject);
+      break;
+    // SHAWN
+    case '002F4833':
+      msg.button_AI && mobiusStart(controlObject);
+      msg.button_B1 && mobiusStart(controlObject);
+      msg.button_A0 && mobiusStart(controlObject);
+      msg.button_B0 && mobiusStart(controlObject);
+      break;
+    // WHITE
+    case '002F2C32':
+      msg.button_AI && snakes.push({ head: 0, color: { r: 255, g: 0, b: 0 }});
+      msg.button_B1 && snakes.push({ head: 0, color: { r: 255, g: 0, b: 0 }});
+      msg.button_A0 && snakes.push({ head: 0, color: { r: 255, g: 0, b: 0 }});
+      msg.button_B0 && snakes.push({ head: 0, color: { r: 255, g: 0, b: 0 }});
       break;
   }
 })

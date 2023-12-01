@@ -3,10 +3,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.mobiusStart = exports.rainbow = exports.fullStop = exports.colorwheel = void 0;
+exports.mobiusStart = exports.rainbow = exports.fullStop = exports.colorwheel = exports.snakes = void 0;
 const rpi_ws281x_native_1 = __importDefault(require("rpi-ws281x-native"));
 const ledLength = 50;
 const channel = (0, rpi_ws281x_native_1.default)(ledLength, { stripType: rpi_ws281x_native_1.default.stripType.WS2811, gpio: 21, brightness: 255 });
+exports.snakes = [];
+const snakeLength = 3;
 function rgb2Int(r, g, b) {
     return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 }
@@ -113,6 +115,19 @@ const mobiusStart = async (controlObject) => {
                 }
                 for (let i = 0; i < 5; i++) {
                     colorArray[Math.floor(Math.random() * ledLength)] = rgb2Int(255, 255, 255);
+                }
+                for (let i = 0; i < exports.snakes.length; i++) {
+                    for (let j = 0; j < snakeLength; j++) {
+                        let index = exports.snakes[i].head + j;
+                        if (index > ledLength) {
+                            index = ledLength;
+                        }
+                        colorArray[index] = rgb2Int(exports.snakes[i].color.r, exports.snakes[i].color.g, exports.snakes[i].color.b);
+                    }
+                    exports.snakes[i].head = exports.snakes[i].head + 1;
+                    if (exports.snakes[i].head > ledLength) {
+                        exports.snakes.splice(i, 1);
+                    }
                 }
                 rpi_ws281x_native_1.default.render(colorArray);
             }, 175);

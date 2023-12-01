@@ -4,6 +4,9 @@ const ledLength = 50;
 
 const channel = ws281x(ledLength, { stripType: ws281x.stripType.WS2811, gpio: 21, brightness: 255 });
 
+export const snakes: { head: number, color: { r: number, g: number, b: number }}[] = []
+const snakeLength = 3;
+
 function rgb2Int(r, g, b) {
   return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 }
@@ -110,9 +113,25 @@ export const mobiusStart = async (controlObject: { controlInterval: NodeJS.Timeo
         for (let i = 0; i < channel.count; i++) {
           colorArray[i] = rgb2Int(0, 0, 255);
         }
+
         for (let i = 0; i < 5; i++) {
           colorArray[Math.floor(Math.random() * ledLength)] = rgb2Int(255, 255, 255);
         }
+
+        for (let i = 0; i < snakes.length; i++) {
+          for (let j = 0; j < snakeLength; j++) {
+            let index = snakes[i].head + j;
+            if (index > ledLength) {
+              index = ledLength;
+            }
+            colorArray[index] = rgb2Int(snakes[i].color.r, snakes[i].color.g, snakes[i].color.b);
+          }
+          snakes[i].head = snakes[i].head + 1;
+          if (snakes[i].head > ledLength) {
+            snakes.splice(i, 1);
+          }
+        }
+
         ws281x.render(colorArray);
       }, 175);
       resolve();
