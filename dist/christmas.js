@@ -46,7 +46,6 @@ client.on('message', (topic, message) => {
         // SHAWN
         case '002F4833':
             console.log('SHAWN');
-            console.log(msg);
             msg.button_AI && (0, christmas_funcs_1.mobiusStart)(controlObject);
             msg.button_BI && (0, christmas_funcs_1.mobiusStart)(controlObject);
             msg.button_A0 && (0, christmas_funcs_1.mobiusStart)(controlObject);
