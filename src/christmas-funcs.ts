@@ -56,32 +56,36 @@ export const mobiusStart = async (controlObject: { controlInterval: NodeJS.Timeo
   console.log('START Mobius');
   fullStop(controlObject);
 
-  let chore = async () => {
-    console.log('1')
-    const colorArray = channel.array;
-    let len = 1;
-    controlObject.controlInterval = setInterval(()=>{
-      for (let i = 0; i < len; i++) {
-        colorArray[i] = 0xFFFFFF;
-      }
-      ws281x.render(colorArray);
-      len = len + 1;
-      if (len > channel.count) {
-        return;
-      }
-    }, 100);
+  let chore = () => {
+    return new Promise<void>((resolve) => {
+      console.log('1')
+      const colorArray = channel.array;
+      let len = 1;
+      controlObject.controlInterval = setInterval(()=>{
+        for (let i = 0; i < len; i++) {
+          colorArray[i] = 0xFFFFFF;
+        }
+        ws281x.render(colorArray);
+        len = len + 1;
+        if (len > channel.count) {
+          resolve();
+        }
+      }, 100);
+    })
   }
 
   await chore();
 
-  chore = async () => {
-    console.log('2')
-    const colorArray = channel.array;
-    for (let i = 0; i < channel.count; i++) {
-      colorArray[i] = mobiusColor(i);
-    }
-    ws281x.render(colorArray);
-    return;
+  chore = () => {
+    return new Promise<void>((resolve) => {
+      console.log('2')
+      const colorArray = channel.array;
+      for (let i = 0; i < channel.count; i++) {
+        colorArray[i] = mobiusColor(i);
+      }
+      ws281x.render(colorArray);
+      resolve();
+    })
   }
 
   await chore();
