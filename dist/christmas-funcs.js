@@ -44,7 +44,7 @@ const rainbow = (interval) => {
         const colorArray = channel.array;
         for (let i = 0; i < channel.count; i++) {
             // colorArray[i] = 0xFF0000;
-            colorArray[i] = colorwheel((offset + i) % 256);
+            colorArray[i] = colorwheel((offset + i) % ledLength);
         }
         offset = (offset + 1) % channel.count;
         rpi_ws281x_native_1.default.render(colorArray);
