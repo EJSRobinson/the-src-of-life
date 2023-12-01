@@ -40,7 +40,7 @@ client.on('message', (topic, message) => {
     case '0031C26E':
       console.log('BLUE');
       msg.button_AI && mobiusStart(controlObject);
-      msg.button_B1 && mobiusStart(controlObject);
+      msg.button_BI && mobiusStart(controlObject);
       msg.button_A0 && fullStop(controlObject);
       msg.button_B0 && fullStop(controlObject);
       break;
@@ -49,7 +49,7 @@ client.on('message', (topic, message) => {
       console.log('SHAWN');
       console.log(msg);
       msg.button_AI && mobiusStart(controlObject);
-      msg.button_B1 && mobiusStart(controlObject);
+      msg.button_BI && mobiusStart(controlObject);
       msg.button_A0 && mobiusStart(controlObject);
       msg.button_B0 && mobiusStart(controlObject);
       break;
@@ -57,7 +57,7 @@ client.on('message', (topic, message) => {
     case '002F2C32':
       console.log('WHITE');
       msg.button_AI && snakes.push({ head: 0, color: { r: 0, g: 255, b: 255 }});
-      msg.button_B1 && snakes.push({ head: 0, color: { r: 255, g: 0, b: 0 }});
+      msg.button_BI && snakes.push({ head: 0, color: { r: 255, g: 0, b: 0 }});
       msg.button_A0 && snakes.push({ head: 0, color: { r: 0, g: 255, b: 0 }});
       msg.button_B0 && snakes.push({ head: 0, color: { r: 255, g: 255, b: 0 }});
       break;

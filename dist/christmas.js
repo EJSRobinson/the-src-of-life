@@ -39,7 +39,7 @@ client.on('message', (topic, message) => {
         case '0031C26E':
             console.log('BLUE');
             msg.button_AI && (0, christmas_funcs_1.mobiusStart)(controlObject);
-            msg.button_B1 && (0, christmas_funcs_1.mobiusStart)(controlObject);
+            msg.button_BI && (0, christmas_funcs_1.mobiusStart)(controlObject);
             msg.button_A0 && (0, christmas_funcs_1.fullStop)(controlObject);
             msg.button_B0 && (0, christmas_funcs_1.fullStop)(controlObject);
             break;
@@ -48,7 +48,7 @@ client.on('message', (topic, message) => {
             console.log('SHAWN');
             console.log(msg);
             msg.button_AI && (0, christmas_funcs_1.mobiusStart)(controlObject);
-            msg.button_B1 && (0, christmas_funcs_1.mobiusStart)(controlObject);
+            msg.button_BI && (0, christmas_funcs_1.mobiusStart)(controlObject);
             msg.button_A0 && (0, christmas_funcs_1.mobiusStart)(controlObject);
             msg.button_B0 && (0, christmas_funcs_1.mobiusStart)(controlObject);
             break;
@@ -56,7 +56,7 @@ client.on('message', (topic, message) => {
         case '002F2C32':
             console.log('WHITE');
             msg.button_AI && christmas_funcs_1.snakes.push({ head: 0, color: { r: 0, g: 255, b: 255 } });
-            msg.button_B1 && christmas_funcs_1.snakes.push({ head: 0, color: { r: 255, g: 0, b: 0 } });
+            msg.button_BI && christmas_funcs_1.snakes.push({ head: 0, color: { r: 255, g: 0, b: 0 } });
             msg.button_A0 && christmas_funcs_1.snakes.push({ head: 0, color: { r: 0, g: 255, b: 0 } });
             msg.button_B0 && christmas_funcs_1.snakes.push({ head: 0, color: { r: 255, g: 255, b: 0 } });
             break;
