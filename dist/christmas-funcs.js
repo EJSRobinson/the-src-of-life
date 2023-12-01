@@ -25,10 +25,10 @@ function colorwheel(pos) {
     }
 }
 exports.colorwheel = colorwheel;
-const fullStop = (interval) => {
+const fullStop = (controlObject) => {
     console.log('STOP');
-    clearInterval(interval);
-    interval = null;
+    clearInterval(controlObject.controlInterval);
+    controlObject.controlInterval = null;
     const colorArray = channel.array;
     for (let i = 0; i < channel.count; i++) {
         colorArray[i] = 0x000000;
@@ -36,11 +36,11 @@ const fullStop = (interval) => {
     rpi_ws281x_native_1.default.render(colorArray);
 };
 exports.fullStop = fullStop;
-const rainbow = (interval) => {
+const rainbow = (controlObject) => {
     console.log('START Rainbow');
     let offset = 0;
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    interval = setInterval(() => {
+    controlObject.controlInterval = setInterval(() => {
         const colorArray = channel.array;
         for (let i = 0; i < channel.count; i++) {
             // colorArray[i] = 0xFF0000;
