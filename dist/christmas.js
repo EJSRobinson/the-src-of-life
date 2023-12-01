@@ -56,3 +56,6 @@ client.subscribe('christmas/#', { qos: 0 }, (error) => {
         console.error(error);
     }
 });
+setInterval(() => {
+    console.log(controlInterval);
+}, 500);
