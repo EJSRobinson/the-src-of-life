@@ -54,6 +54,8 @@ const mobiusColor = (step: number) => {
   return rgb2Int(result.r, result.g, result.b);
 }
 
+const max = 180;
+
 
 export const mobiusStart = async (controlObject: { controlInterval: NodeJS.Timeout | null }) => {
   console.log('START Mobius');
@@ -65,7 +67,7 @@ export const mobiusStart = async (controlObject: { controlInterval: NodeJS.Timeo
       let len = 1;
       controlObject.controlInterval = setInterval(()=>{
         for (let i = 0; i < len; i++) {
-          colorArray[i] = 0x666666;
+          colorArray[i] = 0x333333;
         }
         ws281x.render(colorArray);
         len = len + 1;
@@ -86,14 +88,14 @@ export const mobiusStart = async (controlObject: { controlInterval: NodeJS.Timeo
       let fade = 0;
       controlObject.controlInterval = setInterval(()=>{
         const colorArray = channel.array;
-        if (fade > 255) {
-          fade = 255;
+        if (fade > max) {
+          fade = max;
         }
         for (let i = 0; i < channel.count; i++) {
-          colorArray[i] = rgb2Int(255 - fade, 255 - fade, 255);
+          colorArray[i] = rgb2Int(max - fade, max - fade, max);
         }
         ws281x.render(colorArray);
-        if (fade >= 255) {
+        if (fade >= max) {
           resolve();
         }
         fade = fade + 2;
@@ -111,7 +113,7 @@ export const mobiusStart = async (controlObject: { controlInterval: NodeJS.Timeo
       controlObject.controlInterval = setInterval(()=>{
         const colorArray = channel.array;
         for (let i = 0; i < channel.count; i++) {
-          colorArray[i] = rgb2Int(0, 0, 255);
+          colorArray[i] = rgb2Int(0, 0, max);
         }
 
         for (let i = 0; i < 5; i++) {

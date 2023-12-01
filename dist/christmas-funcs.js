@@ -62,6 +62,7 @@ const mobiusColor = (step) => {
     const result = { r: s1.r + diff.r * totalStep, g: s1.g + diff.g * totalStep, b: s1.b + diff.b * totalStep };
     return rgb2Int(result.r, result.g, result.b);
 };
+const max = 180;
 const mobiusStart = async (controlObject) => {
     console.log('START Mobius');
     (0, exports.fullStop)(controlObject);
@@ -71,7 +72,7 @@ const mobiusStart = async (controlObject) => {
             let len = 1;
             controlObject.controlInterval = setInterval(() => {
                 for (let i = 0; i < len; i++) {
-                    colorArray[i] = 0x666666;
+                    colorArray[i] = 0x333333;
                 }
                 rpi_ws281x_native_1.default.render(colorArray);
                 len = len + 1;
@@ -89,14 +90,14 @@ const mobiusStart = async (controlObject) => {
             let fade = 0;
             controlObject.controlInterval = setInterval(() => {
                 const colorArray = channel.array;
-                if (fade > 255) {
-                    fade = 255;
+                if (fade > max) {
+                    fade = max;
                 }
                 for (let i = 0; i < channel.count; i++) {
-                    colorArray[i] = rgb2Int(255 - fade, 255 - fade, 255);
+                    colorArray[i] = rgb2Int(max - fade, max - fade, max);
                 }
                 rpi_ws281x_native_1.default.render(colorArray);
-                if (fade >= 255) {
+                if (fade >= max) {
                     resolve();
                 }
                 fade = fade + 2;
@@ -111,7 +112,7 @@ const mobiusStart = async (controlObject) => {
             controlObject.controlInterval = setInterval(() => {
                 const colorArray = channel.array;
                 for (let i = 0; i < channel.count; i++) {
-                    colorArray[i] = rgb2Int(0, 0, 255);
+                    colorArray[i] = rgb2Int(0, 0, max);
                 }
                 for (let i = 0; i < 5; i++) {
                     colorArray[Math.floor(Math.random() * ledLength)] = rgb2Int(255, 255, 255);
