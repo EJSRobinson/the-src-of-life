@@ -35,7 +35,6 @@ client.on('connect', () => {
 });
 client.on('message', (topic, message) => {
     const msg = JSON.parse(message.toString());
-    console.log('Received:', msg);
     switch (msg.uid) {
         case '002F2C32':
             msg.button_AI && (0, christmas_funcs_1.rainbow)(controlInterval);
