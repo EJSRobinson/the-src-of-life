@@ -8,7 +8,7 @@ const rpi_ws281x_native_1 = __importDefault(require("rpi-ws281x-native"));
 const ledLength = 50;
 const channel = (0, rpi_ws281x_native_1.default)(ledLength, { stripType: rpi_ws281x_native_1.default.stripType.WS2811, gpio: 21, brightness: 255 });
 exports.snakes = [];
-const snakeLength = 3;
+const snakeLength = 5;
 function rgb2Int(r, g, b) {
     return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 }

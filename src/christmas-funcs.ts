@@ -5,7 +5,7 @@ const ledLength = 50;
 const channel = ws281x(ledLength, { stripType: ws281x.stripType.WS2811, gpio: 21, brightness: 255 });
 
 export const snakes: { head: number, color: { r: number, g: number, b: number }}[] = []
-const snakeLength = 3;
+const snakeLength = 5;
 
 function rgb2Int(r, g, b) {
   return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);

@@ -51,10 +51,10 @@ client.on('message', (topic, message) => {
             break;
         // WHITE
         case '002F2C32':
-            msg.button_AI && christmas_funcs_1.snakes.push({ head: 0, color: { r: 255, g: 0, b: 0 } });
+            msg.button_AI && christmas_funcs_1.snakes.push({ head: 0, color: { r: 0, g: 255, b: 255 } });
             msg.button_B1 && christmas_funcs_1.snakes.push({ head: 0, color: { r: 255, g: 0, b: 0 } });
-            msg.button_A0 && christmas_funcs_1.snakes.push({ head: 0, color: { r: 255, g: 0, b: 0 } });
-            msg.button_B0 && christmas_funcs_1.snakes.push({ head: 0, color: { r: 255, g: 0, b: 0 } });
+            msg.button_A0 && christmas_funcs_1.snakes.push({ head: 0, color: { r: 0, g: 255, b: 0 } });
+            msg.button_B0 && christmas_funcs_1.snakes.push({ head: 0, color: { r: 255, g: 255, b: 0 } });
             break;
     }
 });
