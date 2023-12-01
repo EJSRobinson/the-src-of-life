@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mqtt_1 = __importDefault(require("mqtt"));
+const christmas_funcs_1 = require("./christmas-funcs");
 const protocol = 'mqtts';
 const host = 'hot-bat-53.mobiusflow.io';
 const port = '8883';
@@ -18,6 +19,8 @@ const client = mqtt_1.default.connect(connectUrl, {
     reconnectPeriod: 1000,
 });
 let pingPong = null;
+// eslint-disable-next-line prefer-const
+let controlInterval = null;
 client.on('connect', () => {
     console.log('Connected to', connectUrl);
     if (!pingPong) {
@@ -32,7 +35,15 @@ client.on('connect', () => {
 });
 client.on('message', (topic, message) => {
     const msg = JSON.parse(message.toString());
-    console.log('Received:', topic, msg);
+    console.log('Received:', msg);
+    switch (msg.uid) {
+        case '002F2C32':
+            msg.button_AI && (0, christmas_funcs_1.rainbow)(controlInterval);
+            msg.button_B1 && (0, christmas_funcs_1.rainbow)(controlInterval);
+            msg.button_A0 && (0, christmas_funcs_1.fullStop)(controlInterval);
+            msg.button_B0 && (0, christmas_funcs_1.fullStop)(controlInterval);
+            break;
+    }
 });
 client.on('disconnect', () => {
     console.log('Disconnected.');
