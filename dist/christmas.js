@@ -31,7 +31,7 @@ client.on('connect', () => {
     }
 });
 client.on('message', (topic, message) => {
-    console.log('Received:', topic, JSON.stringify(message, null, 2));
+    console.log('Received:', topic, JSON.stringify(message.toString(), null, 2));
 });
 client.on('disconnect', () => {
     console.log('Disconnected.');
