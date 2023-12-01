@@ -32,7 +32,7 @@ client.on('connect', () => {
 })
 
 client.on('message', (topic, message) => {
-  console.log('Received:', topic, message.toString())
+  console.log('Received:', topic, JSON.stringify(message, null, 2));
 })
 
 client.on('disconnect', () => {
@@ -42,4 +42,11 @@ client.on('disconnect', () => {
     pingPong = null;
   }
 })
+
+client.subscribe('tree/#', { qos: 0 }, (error) => {
+  if (error) {
+    console.error(error)
+  }
+})
+
 
