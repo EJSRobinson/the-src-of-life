@@ -87,6 +87,9 @@ const mobiusStart = async (controlObject) => {
             let fade = 0;
             controlObject.controlInterval = setInterval(() => {
                 const colorArray = channel.array;
+                if (fade > 255) {
+                    fade = 255;
+                }
                 for (let i = 0; i < channel.count; i++) {
                     colorArray[i] = rgb2Int(255 - fade, 255 - fade, 255);
                 }
@@ -94,8 +97,8 @@ const mobiusStart = async (controlObject) => {
                 if (fade >= 255) {
                     resolve();
                 }
-                fade = fade + 1;
-            }, 50);
+                fade = fade + 2;
+            }, 25);
         });
     };
     await chore();
