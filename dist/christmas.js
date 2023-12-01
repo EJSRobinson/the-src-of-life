@@ -31,7 +31,8 @@ client.on('connect', () => {
     }
 });
 client.on('message', (topic, message) => {
-    console.log('Received:', topic, JSON.stringify(message.toString(), null, 2));
+    const msg = JSON.parse(message.toString());
+    console.log('Received:', topic, msg);
 });
 client.on('disconnect', () => {
     console.log('Disconnected.');
@@ -40,7 +41,7 @@ client.on('disconnect', () => {
         pingPong = null;
     }
 });
-client.subscribe('tree/#', { qos: 0 }, (error) => {
+client.subscribe('christmas/#', { qos: 0 }, (error) => {
     if (error) {
         console.error(error);
     }
