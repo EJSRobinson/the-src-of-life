@@ -63,7 +63,7 @@ const mobiusColor = (step) => {
 const mobiusStart = async (controlObject) => {
     console.log('START Mobius');
     (0, exports.fullStop)(controlObject);
-    await (async () => {
+    let chore = async () => {
         const colorArray = channel.array;
         let len = 1;
         controlObject.controlInterval = setInterval(() => {
@@ -76,13 +76,16 @@ const mobiusStart = async (controlObject) => {
                 return;
             }
         }, 100);
-    })();
-    await (async () => {
+    };
+    await chore();
+    chore = async () => {
         const colorArray = channel.array;
         for (let i = 0; i < channel.count; i++) {
             colorArray[i] = mobiusColor(i);
         }
         rpi_ws281x_native_1.default.render(colorArray);
-    })();
+        return;
+    };
+    await chore();
 };
 exports.mobiusStart = mobiusStart;

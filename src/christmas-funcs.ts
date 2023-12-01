@@ -56,7 +56,7 @@ export const mobiusStart = async (controlObject: { controlInterval: NodeJS.Timeo
   console.log('START Mobius');
   fullStop(controlObject);
 
-  await (async () => {
+  let chore = async () => {
     const colorArray = channel.array;
     let len = 1;
     controlObject.controlInterval = setInterval(()=>{
@@ -69,12 +69,18 @@ export const mobiusStart = async (controlObject: { controlInterval: NodeJS.Timeo
         return;
       }
     }, 100);
-  })()
-  await (async () => {
+  }
+
+  await chore();
+
+  chore = async () => {
     const colorArray = channel.array;
     for (let i = 0; i < channel.count; i++) {
       colorArray[i] = mobiusColor(i);
     }
     ws281x.render(colorArray);
-  })()
+    return;
+  }
+
+  await chore();
 }
