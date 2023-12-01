@@ -73,9 +73,10 @@ export const mobiusStart = async (controlObject: { controlInterval: NodeJS.Timeo
     })
   }
 
-  controlObject.controlInterval = null
-
   await chore();
+
+  clearInterval(controlObject.controlInterval as any);
+  controlObject.controlInterval = null
 
   chore = () => {
     return new Promise<void>((resolve) => {

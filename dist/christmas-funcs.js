@@ -79,8 +79,9 @@ const mobiusStart = async (controlObject) => {
             }, 100);
         });
     };
-    controlObject.controlInterval = null;
     await chore();
+    clearInterval(controlObject.controlInterval);
+    controlObject.controlInterval = null;
     chore = () => {
         return new Promise((resolve) => {
             const colorArray = channel.array;
