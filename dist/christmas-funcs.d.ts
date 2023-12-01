@@ -12,4 +12,4 @@ export declare const rainbow: (controlObject: {
 }) => void;
 export declare const mobiusStart: (controlObject: {
     controlInterval: NodeJS.Timeout | null;
-}) => void;
+}) => Promise<void>;

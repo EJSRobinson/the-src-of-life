@@ -51,12 +51,29 @@ const mobiusColor = (step: number) => {
   return rgb2Int(result.r, result.g, result.b);
 }
 
-export const mobiusStart = (controlObject: { controlInterval: NodeJS.Timeout | null }) => {
+
+export const mobiusStart = async (controlObject: { controlInterval: NodeJS.Timeout | null }) => {
   console.log('START Mobius');
   fullStop(controlObject);
-  const colorArray = channel.array;
-  for (let i = 0; i < channel.count; i++) {
-    colorArray[i] = mobiusColor(i);
-  }
-  ws281x.render(colorArray);
+
+  await (async () => {
+    const colorArray = channel.array;
+    let len = 1;
+    controlObject.controlInterval = setInterval(()=>{
+      for (let i = 0; i < len; i++) {
+        colorArray[i] = 0xFFFFFF;
+      }
+      len = len + 1;
+      if (len > channel.count) {
+        return;
+      }
+    }, 100);
+    ws281x.render(colorArray);
+  })()
+  await (async () => {
+    const colorArray = channel.array;
+    for (let i = 0; i < channel.count; i++) {
+      colorArray[i] = mobiusColor(i);
+    }
+  })()
 }
