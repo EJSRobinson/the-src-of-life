@@ -2,8 +2,8 @@ import ws281x from 'rpi-ws281x-native';
 
 const ledLength = 12;
 
-// const channel = ws281x(ledLength, { stripType: ws281x.stripType.WS2812B, gpio: 21, brightness: 255 });
-const channel = ws281x(ledLength, { stripType: 'ws2812', gpio: 21, brightness: 255 });
+const channel = ws281x(ledLength, { stripType: ws281x.stripType.SK6812, gpio: 21, brightness: 255 });
+// const channel = ws281x(ledLength, { stripType: 'ws2812b', gpio: 21, brightness: 255 });
 
 function rgb2Int(r, g, b) {
   return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
