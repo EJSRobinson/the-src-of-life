@@ -114,7 +114,7 @@ export const mobiusStart = async (controlObject: { controlInterval: NodeJS.Timeo
           colorArray[Math.floor(Math.random() * ledLength)] = rgb2Int(255, 255, 255);
         }
         ws281x.render(colorArray);
-      }, 25);
+      }, 100);
       resolve();
     })
   }

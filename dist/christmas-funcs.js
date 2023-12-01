@@ -115,7 +115,7 @@ const mobiusStart = async (controlObject) => {
                     colorArray[Math.floor(Math.random() * ledLength)] = rgb2Int(255, 255, 255);
                 }
                 rpi_ws281x_native_1.default.render(colorArray);
-            }, 25);
+            }, 100);
             resolve();
         });
     };
