@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.rainbow = exports.fullStop = exports.colorwheel = void 0;
 const rpi_ws281x_native_1 = __importDefault(require("rpi-ws281x-native"));
 const ledLength = 12;
-const channel = (0, rpi_ws281x_native_1.default)(ledLength, { stripType: rpi_ws281x_native_1.default.stripType.WS2812, gpio: 21, brightness: 255 });
+const channel = (0, rpi_ws281x_native_1.default)(ledLength, { stripType: rpi_ws281x_native_1.default.stripType.WS2812B, gpio: 21, brightness: 255 });
 function rgb2Int(r, g, b) {
     return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 }
