@@ -60,6 +60,10 @@ client.on('message', (topic, message) => {
       msg.button_A0 && snakes.push({ head: 0, color: { r: 0, g: 255, b: 0 }});
       msg.button_B0 && snakes.push({ head: 0, color: { r: 255, g: 255, b: 0 }});
       break;
+    case 'PIRXXPIR':
+      msg.level > 0 && mobiusStart(controlObject);
+      msg.level === 0 && fullStop(controlObject);
+      break;
   }
 })
 
