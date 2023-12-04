@@ -59,6 +59,10 @@ client.on('message', (topic, message) => {
             msg.button_A0 && christmas_funcs_1.snakes.push({ head: 0, color: { r: 0, g: 255, b: 0 } });
             msg.button_B0 && christmas_funcs_1.snakes.push({ head: 0, color: { r: 255, g: 255, b: 0 } });
             break;
+        case 'PIRXXPIR':
+            msg.level > 0 && (0, christmas_funcs_1.mobiusStart)(controlObject);
+            msg.level === 0 && (0, christmas_funcs_1.fullStop)(controlObject);
+            break;
     }
 });
 client.on('disconnect', () => {
