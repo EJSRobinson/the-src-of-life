@@ -12,4 +12,7 @@ const colorArray = channel.array;
 for (let i = 0; i < channel.count; i++) {
   colorArray[i] = 0x330000;
 }
-ws281x.render(colorArray);
+
+setInterval(() => {
+  ws281x.render(colorArray);
+}, 100);
