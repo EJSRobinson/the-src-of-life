@@ -18,12 +18,12 @@ function off(controlObject) {
         clearInterval(controlObject.controlInterval);
         controlObject.controlInterval = null;
     }
-    const colorArray = channel.array;
-    for (let i = 0; i < channel.count; i++) {
-        console.log(i);
-        colorArray[i] = 0x000000;
-    }
-    console.log(colorArray);
-    rpi_ws281x_native_1.default.render(colorArray);
+    controlObject.controlInterval = setInterval(() => {
+        const colorArray = channel.array;
+        for (let i = 0; i < channel.count; i++) {
+            colorArray[i] = 0x000000;
+        }
+        rpi_ws281x_native_1.default.render(colorArray);
+    }, 1000 / 100);
 }
 exports.off = off;
