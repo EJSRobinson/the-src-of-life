@@ -19,6 +19,7 @@ function off(controlObject) {
         controlObject.controlInterval = null;
     }
     controlObject.controlInterval = setInterval(() => {
+        console.log('off');
         const colorArray = channel.array;
         for (let i = 0; i < channel.count; i++) {
             colorArray[i] = 0x000000;

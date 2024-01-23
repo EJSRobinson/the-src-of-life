@@ -32,6 +32,7 @@ export function rainbow(controlObject: { controlInterval: NodeJS.Timeout | null 
   }
   let offset = 0;
   controlObject.controlInterval = setInterval(() => {
+    console.log('rainbow');
     const colorArray = channel.array;
     for (let i = 0; i < channel.count; i++) {
       colorArray[i] = colorwheel((offset + i) % 256);

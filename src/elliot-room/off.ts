@@ -16,6 +16,7 @@ export function off(controlObject: { controlInterval: NodeJS.Timeout | null }) {
     controlObject.controlInterval = null;
   }
   controlObject.controlInterval = setInterval(() => {
+    console.log('off');
     const colorArray = channel.array;
     for (let i = 0; i < channel.count; i++) {
       colorArray[i] = 0x000000;
