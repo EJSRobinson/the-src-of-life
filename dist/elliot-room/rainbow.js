@@ -36,6 +36,6 @@ function rainbow(controlObject, ws281x, ledLength, speed) {
         }
         offset = (offset + 1) % channel.count;
         ws281x.render(colorArray);
-    }, 1000 / speed);
+    }, 1000 / 5);
 }
 exports.rainbow = rainbow;

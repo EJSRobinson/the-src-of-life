@@ -39,5 +39,5 @@ export function rainbow(
     }
     offset = (offset + 1) % channel.count;
     ws281x.render(colorArray);
-  }, 1000 / speed);
+  }, 1000 / 5);
 }
