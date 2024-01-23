@@ -1,4 +1,4 @@
 /// <reference types="node" />
 export declare function off(controlObject: {
     controlInterval: NodeJS.Timeout | null;
-}): void;
+}, ws281x: any): void;

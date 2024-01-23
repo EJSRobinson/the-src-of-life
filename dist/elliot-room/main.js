@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mqtt_1 = __importDefault(require("mqtt"));
 const off_1 = require("./off");
 const rainbow_1 = require("./rainbow");
+const rpi_ws281x_native_1 = __importDefault(require("rpi-ws281x-native"));
 const protocol = 'mqtts';
 const host = 'chilly-badger-99.mobiusflow.io';
 const port = '8883';
@@ -38,10 +39,10 @@ client.on('message', (topic, message) => {
     switch (msg.uid) {
         // BLUE
         case '002E236A':
-            msg.button_AI && (0, rainbow_1.rainbow)(controlObject);
-            msg.button_BI && (0, rainbow_1.rainbow)(controlObject);
-            msg.button_A0 && (0, off_1.off)(controlObject);
-            msg.button_B0 && (0, off_1.off)(controlObject);
+            msg.button_AI && (0, rainbow_1.rainbow)(controlObject, rpi_ws281x_native_1.default);
+            msg.button_BI && (0, rainbow_1.rainbow)(controlObject, rpi_ws281x_native_1.default);
+            msg.button_A0 && (0, off_1.off)(controlObject, rpi_ws281x_native_1.default);
+            msg.button_B0 && (0, off_1.off)(controlObject, rpi_ws281x_native_1.default);
             break;
     }
 });

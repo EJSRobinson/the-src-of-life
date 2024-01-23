@@ -1,14 +1,12 @@
-import ws281x from 'rpi-ws281x-native';
-
 const ledLength = 194;
 
-const channel = ws281x(ledLength, {
-  stripType: ws281x.stripType.WS2811,
-  gpio: 21,
-  brightness: 255,
-});
+export function off(controlObject: { controlInterval: NodeJS.Timeout | null }, ws281x) {
+  const channel = ws281x(ledLength, {
+    stripType: ws281x.stripType.WS2811,
+    gpio: 21,
+    brightness: 255,
+  });
 
-export function off(controlObject: { controlInterval: NodeJS.Timeout | null }) {
   console.log('off');
   if (controlObject.controlInterval) {
     console.log('clearing interval');

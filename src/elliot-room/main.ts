@@ -1,6 +1,7 @@
 import mqtt from 'mqtt';
 import { off } from './off';
 import { rainbow } from './rainbow';
+import ws281x from 'rpi-ws281x-native';
 
 const protocol = 'mqtts';
 const host = 'chilly-badger-99.mobiusflow.io';
@@ -39,10 +40,10 @@ client.on('message', (topic, message) => {
   switch (msg.uid) {
     // BLUE
     case '002E236A':
-      msg.button_AI && rainbow(controlObject);
-      msg.button_BI && rainbow(controlObject);
-      msg.button_A0 && off(controlObject);
-      msg.button_B0 && off(controlObject);
+      msg.button_AI && rainbow(controlObject, ws281x);
+      msg.button_BI && rainbow(controlObject, ws281x);
+      msg.button_A0 && off(controlObject, ws281x);
+      msg.button_B0 && off(controlObject, ws281x);
       break;
   }
 });
