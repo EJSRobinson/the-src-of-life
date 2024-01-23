@@ -22,5 +22,5 @@ export function off(controlObject: { controlInterval: NodeJS.Timeout | null }) {
       colorArray[i] = 0x000000;
     }
     ws281x.render(colorArray);
-  }, 1000 / 50);
+  }, 1000 / 5);
 }
