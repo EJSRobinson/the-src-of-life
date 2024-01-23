@@ -40,8 +40,8 @@ client.on('message', (topic, message) => {
   switch (msg.uid) {
     // BLUE
     case '002E236A':
-      msg.button_AI && rainbow(controlObject, ws281x, 20, ledLength);
-      msg.button_BI && rainbow(controlObject, ws281x, 20, ledLength);
+      msg.button_AI && rainbow(controlObject, ws281x, ledLength, 20);
+      msg.button_BI && rainbow(controlObject, ws281x, ledLength, 20);
       msg.button_A0 && off(controlObject, ws281x, ledLength);
       msg.button_B0 && off(controlObject, ws281x, ledLength);
       break;

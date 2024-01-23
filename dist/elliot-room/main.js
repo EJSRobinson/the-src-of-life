@@ -40,8 +40,8 @@ client.on('message', (topic, message) => {
     switch (msg.uid) {
         // BLUE
         case '002E236A':
-            msg.button_AI && (0, rainbow_1.rainbow)(controlObject, rpi_ws281x_native_1.default, 20, ledLength);
-            msg.button_BI && (0, rainbow_1.rainbow)(controlObject, rpi_ws281x_native_1.default, 20, ledLength);
+            msg.button_AI && (0, rainbow_1.rainbow)(controlObject, rpi_ws281x_native_1.default, ledLength, 20);
+            msg.button_BI && (0, rainbow_1.rainbow)(controlObject, rpi_ws281x_native_1.default, ledLength, 20);
             msg.button_A0 && (0, off_1.off)(controlObject, rpi_ws281x_native_1.default, ledLength);
             msg.button_B0 && (0, off_1.off)(controlObject, rpi_ws281x_native_1.default, ledLength);
             break;
