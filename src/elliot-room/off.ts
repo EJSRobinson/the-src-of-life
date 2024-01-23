@@ -9,7 +9,9 @@ const channel = ws281x(ledLength, {
 });
 
 export function off(controlObject: { controlInterval: NodeJS.Timeout | null }) {
+  console.log('off');
   if (controlObject.controlInterval) {
+    console.log('clearing interval');
     clearInterval(controlObject.controlInterval);
     controlObject.controlInterval = null;
   }

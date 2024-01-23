@@ -12,7 +12,9 @@ const channel = (0, rpi_ws281x_native_1.default)(ledLength, {
     brightness: 255,
 });
 function off(controlObject) {
+    console.log('off');
     if (controlObject.controlInterval) {
+        console.log('clearing interval');
         clearInterval(controlObject.controlInterval);
         controlObject.controlInterval = null;
     }

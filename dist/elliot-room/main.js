@@ -35,11 +35,9 @@ client.on('connect', () => {
 });
 client.on('message', (topic, message) => {
     const msg = JSON.parse(message.toString());
-    console.log(msg);
     switch (msg.uid) {
         // BLUE
         case '002E236A':
-            console.log('Grey');
             msg.button_AI && (0, rainbow_1.rainbow)(controlObject);
             msg.button_BI && (0, rainbow_1.rainbow)(controlObject);
             msg.button_A0 && (0, off_1.off)(controlObject);
