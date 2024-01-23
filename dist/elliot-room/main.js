@@ -12,6 +12,7 @@ const host = 'chilly-badger-99.mobiusflow.io';
 const port = '8883';
 const clientId = `mqtt_${Math.random().toString(16).slice(3)}`;
 const connectUrl = `${protocol}://${host}:${port}`;
+const ledLength = 194;
 const client = mqtt_1.default.connect(connectUrl, {
     clientId,
     clean: true,
@@ -39,10 +40,10 @@ client.on('message', (topic, message) => {
     switch (msg.uid) {
         // BLUE
         case '002E236A':
-            msg.button_AI && (0, rainbow_1.rainbow)(controlObject, rpi_ws281x_native_1.default);
-            msg.button_BI && (0, rainbow_1.rainbow)(controlObject, rpi_ws281x_native_1.default);
-            msg.button_A0 && (0, off_1.off)(controlObject, rpi_ws281x_native_1.default);
-            msg.button_B0 && (0, off_1.off)(controlObject, rpi_ws281x_native_1.default);
+            msg.button_AI && (0, rainbow_1.rainbow)(controlObject, rpi_ws281x_native_1.default, 20, ledLength);
+            msg.button_BI && (0, rainbow_1.rainbow)(controlObject, rpi_ws281x_native_1.default, 20, ledLength);
+            msg.button_A0 && (0, off_1.off)(controlObject, rpi_ws281x_native_1.default, ledLength);
+            msg.button_B0 && (0, off_1.off)(controlObject, rpi_ws281x_native_1.default, ledLength);
             break;
     }
 });

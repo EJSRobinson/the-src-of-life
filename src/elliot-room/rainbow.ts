@@ -1,6 +1,9 @@
-const ledLength = 194;
-
-export function rainbow(controlObject: { controlInterval: NodeJS.Timeout | null }, ws281x: any) {
+export function rainbow(
+  controlObject: { controlInterval: NodeJS.Timeout | null },
+  ws281x: any,
+  ledLength: number,
+  speed: number,
+) {
   const channel = ws281x(ledLength, {
     stripType: ws281x.stripType.WS2811,
     gpio: 21,
@@ -30,12 +33,11 @@ export function rainbow(controlObject: { controlInterval: NodeJS.Timeout | null 
   }
   let offset = 0;
   controlObject.controlInterval = setInterval(() => {
-    console.log('rainbow');
     const colorArray = channel.array;
     for (let i = 0; i < channel.count; i++) {
       colorArray[i] = colorwheel((offset + i) % 256);
     }
     offset = (offset + 1) % channel.count;
     ws281x.render(colorArray);
-  }, 1000 / 20);
+  }, 1000 / speed);
 }

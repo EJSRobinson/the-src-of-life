@@ -1,8 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.rainbow = void 0;
-const ledLength = 194;
-function rainbow(controlObject, ws281x) {
+function rainbow(controlObject, ws281x, ledLength, speed) {
     const channel = ws281x(ledLength, {
         stripType: ws281x.stripType.WS2811,
         gpio: 21,
@@ -31,13 +30,12 @@ function rainbow(controlObject, ws281x) {
     }
     let offset = 0;
     controlObject.controlInterval = setInterval(() => {
-        console.log('rainbow');
         const colorArray = channel.array;
         for (let i = 0; i < channel.count; i++) {
             colorArray[i] = colorwheel((offset + i) % 256);
         }
         offset = (offset + 1) % channel.count;
         ws281x.render(colorArray);
-    }, 1000 / 20);
+    }, 1000 / speed);
 }
 exports.rainbow = rainbow;

@@ -7,8 +7,8 @@ const protocol = 'mqtts';
 const host = 'chilly-badger-99.mobiusflow.io';
 const port = '8883';
 const clientId = `mqtt_${Math.random().toString(16).slice(3)}`;
-
 const connectUrl = `${protocol}://${host}:${port}`;
+const ledLength = 194;
 
 const client = mqtt.connect(connectUrl, {
   clientId,
@@ -40,10 +40,10 @@ client.on('message', (topic, message) => {
   switch (msg.uid) {
     // BLUE
     case '002E236A':
-      msg.button_AI && rainbow(controlObject, ws281x);
-      msg.button_BI && rainbow(controlObject, ws281x);
-      msg.button_A0 && off(controlObject, ws281x);
-      msg.button_B0 && off(controlObject, ws281x);
+      msg.button_AI && rainbow(controlObject, ws281x, 20, ledLength);
+      msg.button_BI && rainbow(controlObject, ws281x, 20, ledLength);
+      msg.button_A0 && off(controlObject, ws281x, ledLength);
+      msg.button_B0 && off(controlObject, ws281x, ledLength);
       break;
   }
 });
