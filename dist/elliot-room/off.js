@@ -25,6 +25,6 @@ function off(controlObject) {
             colorArray[i] = 0x000000;
         }
         rpi_ws281x_native_1.default.render(colorArray);
-    }, 1000 / 100);
+    }, 1000 / 50);
 }
 exports.off = off;
