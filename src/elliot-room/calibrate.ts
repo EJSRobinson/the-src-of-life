@@ -19,11 +19,30 @@ channel;
 
 keypress(process.stdin);
 
+let pointer = 0;
+
 // listen for the "keypress" event
 process.stdin.on('keypress', function (ch, key) {
-  console.log('got "keypress"', key);
   if (key && key.ctrl && key.name == 'c') {
     process.stdin.pause();
+  }
+  if (key && key.name == 'right') {
+    pointer = (pointer + 1) % channel.count;
+    console.log(pointer);
+    const colorArray = channel.array;
+    for (let i = 0; i < channel.count; i++) {
+      colorArray[i] = pointer === i ? 0x33ff33 : 0x000000;
+    }
+    ws281x.render(colorArray);
+  }
+  if (key && key.name == 'left') {
+    pointer = (pointer - 1 + channel.count) % channel.count;
+    console.log(pointer);
+    const colorArray = channel.array;
+    for (let i = 0; i < channel.count; i++) {
+      colorArray[i] = pointer === i ? 0x33ff33 : 0x000000;
+    }
+    ws281x.render(colorArray);
   }
 });
 
