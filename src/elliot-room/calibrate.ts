@@ -1,5 +1,5 @@
 import ws281x from 'rpi-ws281x-native';
-import * as keypress from 'keypress';
+import keypress from 'keypress';
 
 const ledLength = 194;
 
