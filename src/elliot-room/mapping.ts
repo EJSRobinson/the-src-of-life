@@ -267,7 +267,7 @@ const mainLoop = async () => {
       colorArray[cursor.element] = 0x00ff00;
     }
     ws281x.render(colorArray);
-    console.log('Tick');
+    console.log(cursors.map((cursor) => cursor.subject.label));
     await wait(1000);
   }
 };
