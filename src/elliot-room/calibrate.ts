@@ -31,7 +31,7 @@ process.stdin.on('keypress', function (ch, key) {
     console.log(pointer);
     const colorArray = channel.array;
     for (let i = 0; i < channel.count; i++) {
-      colorArray[i] = pointer === i ? 0x33ff33 : 0x000000;
+      colorArray[i] = pointer === i ? 0x33ff33 : 0x330000;
     }
     ws281x.render(colorArray);
   }
@@ -40,7 +40,7 @@ process.stdin.on('keypress', function (ch, key) {
     console.log(pointer);
     const colorArray = channel.array;
     for (let i = 0; i < channel.count; i++) {
-      colorArray[i] = pointer === i ? 0x33ff33 : 0x000000;
+      colorArray[i] = pointer === i ? 0x33ff33 : 0x330000;
     }
     ws281x.render(colorArray);
   }
