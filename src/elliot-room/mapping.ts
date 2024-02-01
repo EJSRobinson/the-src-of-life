@@ -41,7 +41,7 @@ export const roomTree: tree = {
         },
         {
           label: '1G',
-          stem: [46, 45, 44, 43, 43, 41],
+          stem: [46, 45, 44, 43, 42, 41],
           branches: [
             {
               label: '1H',
@@ -268,7 +268,7 @@ const mainLoop = async () => {
     }
     ws281x.render(colorArray);
     console.log(cursors.map((cursor) => cursor.subject.label));
-    await wait(1000);
+    await wait(500);
   }
 };
 
