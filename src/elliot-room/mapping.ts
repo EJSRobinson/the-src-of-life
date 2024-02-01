@@ -237,7 +237,7 @@ cursors.push({
 
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const mainLoop = async () => {
+const wave = async (timestep: number, color: number) => {
   console.log('Start Loop');
   while (cursors.length > 0) {
     const colorArray = channel.array;
@@ -264,12 +264,16 @@ const mainLoop = async () => {
           cursors.splice(i, 1);
         }
       }
-      colorArray[cursor.element] = 0x00ff00;
+      colorArray[cursor.element] = color;
     }
     ws281x.render(colorArray);
-    console.log(cursors.map((cursor) => cursor.subject.label));
-    await wait(500);
+    await wait(timestep);
   }
 };
 
+const mainLoop = async () => {
+  await wave(1000 / 20, 0x0000ff);
+  await wait(750);
+  await wave(1000 / 20, 0x000000);
+};
 mainLoop();
