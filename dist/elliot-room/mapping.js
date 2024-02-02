@@ -277,5 +277,5 @@ setInterval(() => {
         element: null,
         subject: exports.roomTree,
     });
-    wave(1000 / 35, 0x0000ff);
-}, 1000);
+    wave(1000 / 30, 0x0000ff);
+}, 1100);
