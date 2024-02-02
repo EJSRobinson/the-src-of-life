@@ -230,11 +230,6 @@ type cursor = {
 
 let cursors: cursor[] = [];
 
-cursors.push({
-  element: null,
-  subject: roomTree,
-});
-
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const wave = async (timestep: number, color: number) => {
@@ -285,10 +280,13 @@ const wave = async (timestep: number, color: number) => {
     for (let i = 0; i < colorArray.length; i++) {
       colorArray[i] = 0x000000;
     }
-    console.log(cursors.length);
   }
 };
 
 setInterval(() => {
+  cursors.push({
+    element: null,
+    subject: roomTree,
+  });
   wave(1000 / 20, 0x0000ff);
-}, 5000);
+}, 1000);

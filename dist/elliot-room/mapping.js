@@ -220,10 +220,6 @@ const channel = (0, rpi_ws281x_native_1.default)(ledLength, {
     brightness: 255,
 });
 let cursors = [];
-cursors.push({
-    element: null,
-    subject: exports.roomTree,
-});
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const wave = async (timestep, color) => {
     console.log('Start Loop');
@@ -274,9 +270,12 @@ const wave = async (timestep, color) => {
         for (let i = 0; i < colorArray.length; i++) {
             colorArray[i] = 0x000000;
         }
-        console.log(cursors.length);
     }
 };
 setInterval(() => {
+    cursors.push({
+        element: null,
+        subject: exports.roomTree,
+    });
     wave(1000 / 20, 0x0000ff);
-}, 5000);
+}, 1000);
