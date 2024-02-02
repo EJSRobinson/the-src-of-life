@@ -277,5 +277,5 @@ const wave = async (timestep, color) => {
     }
 };
 setInterval(() => {
-    wave(1000 / 20, 0xff0000);
-}, 1000 / 500);
+    wave(1000 / 20, 0x0000ff);
+}, 500);
