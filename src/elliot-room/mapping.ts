@@ -272,4 +272,4 @@ const wave = async (timestep: number, color: number) => {
   }
 };
 
-wave(1000 / 20, 0x0000ff);
+wave(1000 / 10, 0x0000ff);
