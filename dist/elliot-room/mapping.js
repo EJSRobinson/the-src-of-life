@@ -274,8 +274,9 @@ const wave = async (timestep, color) => {
         for (let i = 0; i < colorArray.length; i++) {
             colorArray[i] = 0x000000;
         }
+        console.log(cursors.length);
     }
 };
 setInterval(() => {
     wave(1000 / 20, 0x0000ff);
-}, 1000);
+}, 5000);
