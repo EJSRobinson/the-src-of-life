@@ -249,6 +249,7 @@ const wave = async (timestep: number, color: number) => {
       } else {
         const newIndex = cursor.subject.stem.indexOf(cursor.element) + 1;
         if (newIndex < cursor.subject.stem.length) {
+          colorArray[cursor.element] = 0x000000;
           cursor.element = cursor.subject.stem[newIndex];
         } else {
           if (cursor.subject.branches === null) {
@@ -271,9 +272,4 @@ const wave = async (timestep: number, color: number) => {
   }
 };
 
-const mainLoop = async () => {
-  await wave(1000 / 20, 0x0000ff);
-  await wait(750);
-  await wave(1000 / 20, 0x000000);
-};
-mainLoop();
+wave(1000 / 20, 0x0000ff);
