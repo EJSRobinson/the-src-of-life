@@ -219,7 +219,7 @@ const channel = (0, rpi_ws281x_native_1.default)(ledLength, {
     gpio: 21,
     brightness: 255,
 });
-const cursors = [];
+let cursors = [];
 cursors.push({
     element: null,
     subject: exports.roomTree,
@@ -229,6 +229,7 @@ const wave = async (timestep, color) => {
     console.log('Start Loop');
     while (cursors.length > 0) {
         const colorArray = channel.array;
+        let deleteMarkedCursors = [];
         for (let i = 0; i < cursors.length; i++) {
             // Loop through cursors
             const cursor = cursors[i];
@@ -236,7 +237,6 @@ const wave = async (timestep, color) => {
                 cursor.element = cursor.subject.stem[0];
             }
             else {
-                colorArray[cursor.element] = 0x000000;
                 const newIndex = cursor.subject.stem.indexOf(cursor.element) + 1;
                 if (newIndex < cursor.subject.stem.length) {
                     cursor.element = cursor.subject.stem[newIndex];
@@ -253,13 +253,27 @@ const wave = async (timestep, color) => {
                             });
                         }
                     }
-                    cursors.splice(i, 1);
+                    deleteMarkedCursors.push(i);
                 }
             }
             colorArray[cursor.element] = color;
         }
+        // render
         rpi_ws281x_native_1.default.render(colorArray);
+        // Remove cursors that have reached the end of their stem
+        const newCursors = [];
+        for (let i = 0; i < cursors.length; i++) {
+            if (!deleteMarkedCursors.includes(i)) {
+                newCursors.push(cursors[i]);
+            }
+        }
+        cursors = newCursors;
+        deleteMarkedCursors = [];
+        // Reset too off
         await wait(timestep);
+        for (let i = 0; i < colorArray.length; i++) {
+            colorArray[i] = 0x000000;
+        }
     }
 };
 wave(1000 / 10, 0x0000ff);
