@@ -247,9 +247,9 @@ const wave = async (timestep: number, color: number) => {
       if (cursor.element === null) {
         cursor.element = cursor.subject.stem[0];
       } else {
+        colorArray[cursor.element] = 0x000000;
         const newIndex = cursor.subject.stem.indexOf(cursor.element) + 1;
         if (newIndex < cursor.subject.stem.length) {
-          colorArray[cursor.element] = 0x000000;
           cursor.element = cursor.subject.stem[newIndex];
         } else {
           if (cursor.subject.branches === null) {
