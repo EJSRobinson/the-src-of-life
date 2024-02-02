@@ -288,5 +288,5 @@ setInterval(() => {
     element: null,
     subject: roomTree,
   });
-  wave(1000 / 30, 0x0000ff);
+  wave(1000 / 35, 0x0000ff);
 }, 1000);
