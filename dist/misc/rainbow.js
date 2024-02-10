@@ -40,6 +40,6 @@ setInterval(() => {
         console.log(param);
         colorArray[i] = colorwheel(param % 256);
     }
-    offset = (offset + 1) % channel.count;
+    offset = offset + 1;
     rpi_ws281x_native_1.default.render(colorArray);
 }, 1000 / 20);

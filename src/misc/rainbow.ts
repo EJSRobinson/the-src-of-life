@@ -35,6 +35,6 @@ setInterval(() => {
     console.log(param);
     colorArray[i] = colorwheel(param % 256);
   }
-  offset = (offset + 1) % channel.count;
+  offset = offset + 1;
   ws281x.render(colorArray);
 }, 1000 / 20);
