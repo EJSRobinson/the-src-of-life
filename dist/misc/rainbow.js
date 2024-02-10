@@ -36,7 +36,9 @@ setInterval(() => {
     const colorArray = channel.array;
     for (let i = 0; i < channel.count; i++) {
         // colorArray[i] = 0xFF0000;
-        colorArray[i] = colorwheel((offset + Math.round(i * (256 / ledLength))) % 256);
+        const param = offset + Math.round(i * (256 / ledLength));
+        console.log(param);
+        colorArray[i] = colorwheel(param % 256);
     }
     offset = (offset + 1) % channel.count;
     rpi_ws281x_native_1.default.render(colorArray);
