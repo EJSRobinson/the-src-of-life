@@ -6,7 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.colorwheel = void 0;
 const rpi_ws281x_native_1 = __importDefault(require("rpi-ws281x-native"));
 const ledLength = 194;
-const channel = (0, rpi_ws281x_native_1.default)(ledLength, { stripType: rpi_ws281x_native_1.default.stripType.WS2811, gpio: 21, brightness: 255 });
+const channel = (0, rpi_ws281x_native_1.default)(ledLength, {
+    stripType: rpi_ws281x_native_1.default.stripType.WS2811,
+    gpio: 21,
+    brightness: 255,
+});
 function colorwheel(pos) {
     pos = 255 - pos;
     if (pos < 85) {
@@ -32,7 +36,7 @@ setInterval(() => {
     const colorArray = channel.array;
     for (let i = 0; i < channel.count; i++) {
         // colorArray[i] = 0xFF0000;
-        colorArray[i] = colorwheel((offset + i) % 256);
+        colorArray[i] = colorwheel((offset + Math.round(i * (256 / ledLength))) % 256);
     }
     offset = (offset + 1) % channel.count;
     rpi_ws281x_native_1.default.render(colorArray);
