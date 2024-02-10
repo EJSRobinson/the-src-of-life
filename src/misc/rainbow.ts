@@ -35,4 +35,4 @@ setInterval(() => {
   }
   offset = offset + 1;
   ws281x.render(colorArray);
-}, 1000 / 20);
+}, 1000 / 50);
