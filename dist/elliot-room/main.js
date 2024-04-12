@@ -8,7 +8,7 @@ const off_1 = require("./off");
 const rainbow_1 = require("./rainbow");
 const rpi_ws281x_native_1 = __importDefault(require("rpi-ws281x-native"));
 const protocol = 'mqtts';
-const host = 'chilly-badger-99.mobiusflow.io';
+const host = 'demo-datasource-01.mobiusflow.io';
 const port = '8883';
 const clientId = `mqtt_${Math.random().toString(16).slice(3)}`;
 const connectUrl = `${protocol}://${host}:${port}`;
@@ -17,8 +17,8 @@ const client = mqtt_1.default.connect(connectUrl, {
     clientId,
     clean: true,
     connectTimeout: 4000,
-    username: 'superUser',
-    password: 'superSecret',
+    username: 'brokerUser',
+    password: 'ViAJDmmVwnQ0zVnCHfNh',
     reconnectPeriod: 1000,
 });
 let pingPong = null;
