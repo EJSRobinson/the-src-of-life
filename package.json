@@ -23,8 +23,11 @@
     "typescript": "^5.3.2"
   },
   "dependencies": {
+    "@types/mosca": "^2.8.8",
+    "@types/mqtt": "^2.5.0",
     "keypress": "^0.2.1",
-    "mqtt": "^5.3.1",
+    "mosca": "^2.8.3",
+    "mqtt": "^5.9.1",
     "rpi-ws281x": "^1.0.36",
     "rpi-ws281x-native": "^1.0.4"
   }
