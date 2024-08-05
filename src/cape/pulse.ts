@@ -14,6 +14,7 @@ const channel = ws281x(ledLength, {
 
 // eslint-disable-next-line no-console
 let offset = 0;
+let direction = true;
 setInterval(() => {
   const colorArray = channel.array;
   for (let i = 0; i < channel.count; i++) {
@@ -26,9 +27,18 @@ setInterval(() => {
       }
     }
   }
-  offset = offset + 1;
+  if (direction) {
+    offset = offset + 1;
+  } else {
+    offset = offset - 1;
+  }
   if (offset === 5) {
-    offset = 0;
+    offset = 3;
+    direction = false;
+  }
+  if (offset === -1) {
+    offset = 1;
+    direction = true;
   }
   ws281x.render(colorArray);
 }, 1000 / speed);
