@@ -20,6 +20,7 @@ setInterval(() => {
   for (let i = 0; i < channel.count; i++) {
     colorArray[i] = 0x000000;
   }
+  console.log(direction, offset);
   for (const segment of expandedMapping) {
     if (segment.positionX === offset) {
       for (let i = 0; i < segment.addrs.length; i++) {
