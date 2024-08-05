@@ -15,13 +15,11 @@ const channel = ws281x(ledLength, {
 // eslint-disable-next-line no-console
 let offset = 0;
 let direction = true;
-console.log('START');
 setInterval(() => {
   const colorArray = channel.array;
   for (let i = 0; i < channel.count; i++) {
     colorArray[i] = 0x000000;
   }
-  console.log(direction, offset);
   for (const segment of expandedMapping) {
     if (segment.positionX === offset) {
       for (let i = 0; i < segment.addrs.length; i++) {
