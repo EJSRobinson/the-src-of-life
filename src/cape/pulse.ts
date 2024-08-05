@@ -4,7 +4,7 @@ import { expandedMapping } from './structure';
 
 const brightness = 255;
 const ledLength = 150;
-const speed = 5;
+const speed = 15;
 
 const channel = ws281x(ledLength, {
   stripType: ws281x.stripType.WS2811,
@@ -23,7 +23,7 @@ setInterval(() => {
   for (const segment of expandedMapping) {
     if (segment.positionX === offset) {
       for (let i = 0; i < segment.addrs.length; i++) {
-        colorArray[segment.addrs[i]] = 0xff0000;
+        colorArray[segment.addrs[i]] = 0xffffff;
       }
     }
   }
