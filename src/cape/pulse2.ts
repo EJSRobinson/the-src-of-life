@@ -1,8 +1,14 @@
 import ws281x from 'rpi-ws281x-native';
 //import { deadPixels } from './structure';
 import { expandedMapping } from './structure';
+import { Theme, fade } from './colourThems';
 
-export const pulse = (interval: NodeJS.Timeout | null, brightness: number, speed: number) => {
+export const pulse2 = (
+  interval: NodeJS.Timeout | null,
+  brightness: number,
+  speed: number,
+  theme: Theme,
+) => {
   const ledLength = 150;
   const channel = ws281x(ledLength, {
     stripType: ws281x.stripType.WS2811,
@@ -30,8 +36,23 @@ export const pulse = (interval: NodeJS.Timeout | null, brightness: number, speed
     }
     for (const segment of expandedMapping) {
       if (segment.positionX === offset) {
-        for (let i = 0; i < segment.addrs.length; i++) {
-          colorArray[segment.addrs[i]] = 0xffffff;
+        if (segment.positionY !== undefined) {
+          switch (segment.positionY) {
+            case 0:
+              for (let i = 0; i < segment.addrs.length; i++) {
+                colorArray[segment.addrs[i]] = colorArray[54];
+              }
+              break;
+            case 1:
+              for (let i = 0; i < segment.addrs.length; i++) {
+                colorArray[segment.addrs[i]] = colorArray[96];
+              }
+              break;
+          }
+        } else {
+          for (let i = 0; i < segment.addrs.length; i++) {
+            colorArray[segment.addrs[i]] = fade(theme, i / (segment.addrs.length - 1));
+          }
         }
       }
     }
