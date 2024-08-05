@@ -25,18 +25,18 @@ const pulse2 = (interval, brightness, speed, theme) => {
     });
     // eslint-disable-next-line no-console
     let offset = 0;
+    let offset2 = 0;
     let direction = true;
     if (interval) {
         clearInterval(interval);
         interval = null;
     }
     interval = setInterval(() => {
-        console.log('run');
         const colorArray = channel.array;
         for (let i = 0; i < channel.count; i++) {
             colorArray[i] = 0x000000;
         }
-        for (const segment of structure_1.expandedMapping) {
+        for (const segment of structure_1.expandedMappingJoined) {
             if (segment.positionX === offset) {
                 if (segment.positionY !== undefined) {
                     switch (segment.positionY) {
@@ -54,7 +54,7 @@ const pulse2 = (interval, brightness, speed, theme) => {
                 }
                 else {
                     for (let i = 0; i < segment.addrs.length; i++) {
-                        colorArray[segment.addrs[i]] = (0, colourThems_1.fade)(theme, i / (segment.addrs.length - 1));
+                        colorArray[segment.addrs[i]] = (0, colourThems_1.fade)(theme, offset2 + i / (segment.addrs.length - 1));
                     }
                 }
             }
@@ -73,6 +73,7 @@ const pulse2 = (interval, brightness, speed, theme) => {
             offset = 1;
             direction = true;
         }
+        offset2 = offset2 + 0.05;
         rpi_ws281x_native_1.default.render(colorArray);
     }, 1000 / speed);
 };

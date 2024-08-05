@@ -3,4 +3,4 @@ export type Theme = {
     colours: number[];
 };
 export declare const themes: Theme[];
-export declare const fade: (theme: Theme, propotion: number) => number;
+export declare const fade: (theme: Theme, prop: number) => number;

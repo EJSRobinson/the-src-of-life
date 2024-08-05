@@ -1,6 +1,6 @@
 import ws281x from 'rpi-ws281x-native';
 //import { deadPixels } from './structure';
-import { expandedMapping } from './structure';
+import { expandedMappingJoined } from './structure';
 import { Theme, fade } from './colourThems';
 
 export const pulse2 = (
@@ -24,18 +24,18 @@ export const pulse2 = (
 
   // eslint-disable-next-line no-console
   let offset = 0;
+  let offset2 = 0;
   let direction = true;
   if (interval) {
     clearInterval(interval);
     interval = null;
   }
   interval = setInterval(() => {
-    console.log('run');
     const colorArray = channel.array;
     for (let i = 0; i < channel.count; i++) {
       colorArray[i] = 0x000000;
     }
-    for (const segment of expandedMapping) {
+    for (const segment of expandedMappingJoined) {
       if (segment.positionX === offset) {
         if (segment.positionY !== undefined) {
           switch (segment.positionY) {
@@ -52,7 +52,7 @@ export const pulse2 = (
           }
         } else {
           for (let i = 0; i < segment.addrs.length; i++) {
-            colorArray[segment.addrs[i]] = fade(theme, i / (segment.addrs.length - 1));
+            colorArray[segment.addrs[i]] = fade(theme, offset2 + i / (segment.addrs.length - 1));
           }
         }
       }
@@ -70,6 +70,7 @@ export const pulse2 = (
       offset = 1;
       direction = true;
     }
+    offset2 = offset2 + 0.05;
     ws281x.render(colorArray);
   }, 1000 / speed);
 };

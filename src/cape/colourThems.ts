@@ -10,12 +10,13 @@ export const themes: Theme[] = [
   },
 ];
 
-export const fade = (theme: Theme, propotion: number) => {
+export const fade = (theme: Theme, prop: number) => {
   const start = theme.colours[0];
   const end = theme.colours[1];
+  const normaliseProp = ((prop * 100) % 100) / 100;
   if (end > start) {
-    return Math.round(start + (end - start) * propotion);
+    return Math.round(start + (end - start) * normaliseProp);
   } else {
-    return Math.round(start - (start - end) * propotion);
+    return Math.round(start - (start - end) * normaliseProp);
   }
 };
