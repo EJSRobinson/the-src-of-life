@@ -12,7 +12,7 @@ const pulse = (interval, brightness, speed) => {
     const channel = (0, rpi_ws281x_native_1.default)(ledLength, {
         stripType: rpi_ws281x_native_1.default.stripType.WS2811,
         gpio: 21,
-        brightness: () => {
+        brightness: (() => {
             let result = brightness * 2.55;
             result = Math.round(result);
             if (result > 255)
@@ -20,7 +20,7 @@ const pulse = (interval, brightness, speed) => {
             if (result < 0)
                 result = 0;
             return result;
-        },
+        })(),
     });
     // eslint-disable-next-line no-console
     let offset = 0;

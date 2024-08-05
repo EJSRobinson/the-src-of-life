@@ -7,13 +7,13 @@ export const pulse = (interval: NodeJS.Timeout | null, brightness: number, speed
   const channel = ws281x(ledLength, {
     stripType: ws281x.stripType.WS2811,
     gpio: 21,
-    brightness: () => {
+    brightness: (() => {
       let result = brightness * 2.55;
       result = Math.round(result);
       if (result > 255) result = 255;
       if (result < 0) result = 0;
       return result;
-    },
+    })(),
   });
 
   // eslint-disable-next-line no-console
