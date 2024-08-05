@@ -1,5 +1,6 @@
 import * as mosca from 'mosca';
 import * as mqtt from 'mqtt';
+import { main } from './main';
 
 // *** SERVER ***
 
@@ -51,7 +52,7 @@ client.on('connect', () => {
 
 // Event fired when a message is received
 client.on('message', (topic, message) => {
-  console.log(`Received message on topic ${topic}: ${message.toString()}`);
+  main(topic, message.toString());
 });
 
 // Event fired when the client is disconnected
