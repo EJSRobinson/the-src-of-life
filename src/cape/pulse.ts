@@ -16,6 +16,8 @@ export const pulse = (interval: NodeJS.Timeout | null, brightness: number, speed
     })(),
   });
 
+  console.log(speed);
+
   // eslint-disable-next-line no-console
   let offset = 0;
   let direction = true;

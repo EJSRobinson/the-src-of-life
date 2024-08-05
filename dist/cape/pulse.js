@@ -22,6 +22,7 @@ const pulse = (interval, brightness, speed) => {
             return result;
         })(),
     });
+    console.log(speed);
     // eslint-disable-next-line no-console
     let offset = 0;
     let direction = true;
