@@ -15,6 +15,7 @@ export const main = (topic: string, payload: string) => {
     console.error('Error parsing message', e);
     return;
   }
+  console.log(topic, message);
   switch (topic.split('/')[2]) {
     case 'pulse':
       if (message.brightness !== undefined && message.speed !== undefined) {
