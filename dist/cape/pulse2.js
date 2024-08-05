@@ -31,6 +31,7 @@ const pulse2 = (interval, brightness, speed, theme) => {
         interval = null;
     }
     interval = setInterval(() => {
+        console.log('run');
         const colorArray = channel.array;
         for (let i = 0; i < channel.count; i++) {
             colorArray[i] = 0x000000;
