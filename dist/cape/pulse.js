@@ -8,7 +8,7 @@ const rpi_ws281x_native_1 = __importDefault(require("rpi-ws281x-native"));
 const structure_1 = require("./structure");
 const brightness = 255;
 const ledLength = 150;
-const speed = 15;
+const speed = 10;
 const channel = (0, rpi_ws281x_native_1.default)(ledLength, {
     stripType: rpi_ws281x_native_1.default.stripType.WS2811,
     gpio: 21,

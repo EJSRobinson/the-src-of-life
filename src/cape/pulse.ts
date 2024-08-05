@@ -4,7 +4,7 @@ import { expandedMapping } from './structure';
 
 const brightness = 255;
 const ledLength = 150;
-const speed = 15;
+const speed = 10;
 
 const channel = ws281x(ledLength, {
   stripType: ws281x.stripType.WS2811,
