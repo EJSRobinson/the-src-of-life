@@ -25,6 +25,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mosca = __importStar(require("mosca"));
 const mqtt = __importStar(require("mqtt"));
+const main_1 = require("./main");
 // *** SERVER ***
 // Mosca settings
 const settings = {
@@ -64,7 +65,7 @@ client.on('connect', () => {
 });
 // Event fired when a message is received
 client.on('message', (topic, message) => {
-    console.log(`Received message on topic ${topic}: ${message.toString()}`);
+    (0, main_1.main)(topic, message.toString());
 });
 // Event fired when the client is disconnected
 client.on('close', () => {
