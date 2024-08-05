@@ -6,7 +6,7 @@ export type Theme = {
 export const themes: Theme[] = [
   {
     name: 'red',
-    colours: [0xff0046, 0xff0000, 0xff4600, 0xff7500],
+    colours: [0xff0000, 0xff0000, 0xff4600, 0xffd000],
   },
 ];
 

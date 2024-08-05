@@ -4,7 +4,7 @@ exports.fade = exports.themes = void 0;
 exports.themes = [
     {
         name: 'red',
-        colours: [0xff0046, 0xff0000, 0xff4600, 0xff7500],
+        colours: [0xff0000, 0xff0000, 0xff4600, 0xffd000],
     },
 ];
 const fade = (theme, prop) => {

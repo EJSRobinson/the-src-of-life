@@ -70,7 +70,7 @@ export const pulse2 = (
       offset = 1;
       direction = true;
     }
-    offset2 = offset2 + 0.05;
+    offset2 = offset2 + 0.05 / 3;
     ws281x.render(colorArray);
   }, 1000 / speed);
 };

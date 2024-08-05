@@ -73,7 +73,7 @@ const pulse2 = (interval, brightness, speed, theme) => {
             offset = 1;
             direction = true;
         }
-        offset2 = offset2 + 0.05;
+        offset2 = offset2 + 0.05 / 3;
         rpi_ws281x_native_1.default.render(colorArray);
     }, 1000 / speed);
 };
