@@ -30,7 +30,7 @@ const flash = (interval, brightness, speed, theme) => {
         interval = null;
     }
     interval = setInterval(() => {
-        const prop = Math.random();
+        const prop = Math.random() / 10;
         const colorArray = channel.array;
         for (let i = 0; i < channel.count; i++) {
             colorArray[i] = 0x000000;
