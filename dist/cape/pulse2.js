@@ -54,7 +54,7 @@ const pulse2 = (interval, brightness, speed, theme) => {
                 }
                 else {
                     for (let i = 0; i < segment.addrs.length; i++) {
-                        colorArray[segment.addrs[i]] = (0, colourThems_1.colorwheel)(64);
+                        colorArray[segment.addrs[i]] = (0, colourThems_1.colorwheel)(offset2);
                     }
                 }
             }
@@ -73,7 +73,11 @@ const pulse2 = (interval, brightness, speed, theme) => {
             offset = 1;
             direction = true;
         }
-        offset2 = offset2 + 0.05 / 3;
+        console.log(offset2);
+        offset2 = offset2 + 1;
+        if (offset2 === 256) {
+            offset2 = 0;
+        }
         rpi_ws281x_native_1.default.render(colorArray);
     }, 1000 / speed);
 };

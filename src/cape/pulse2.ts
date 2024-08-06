@@ -52,7 +52,7 @@ export const pulse2 = (
           }
         } else {
           for (let i = 0; i < segment.addrs.length; i++) {
-            colorArray[segment.addrs[i]] = colorwheel(64);
+            colorArray[segment.addrs[i]] = colorwheel(offset2);
           }
         }
       }
@@ -70,7 +70,11 @@ export const pulse2 = (
       offset = 1;
       direction = true;
     }
-    offset2 = offset2 + 0.05 / 3;
+    console.log(offset2);
+    offset2 = offset2 + 1;
+    if (offset2 === 256) {
+      offset2 = 0;
+    }
     ws281x.render(colorArray);
   }, 1000 / speed);
 };
