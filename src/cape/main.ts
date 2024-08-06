@@ -47,6 +47,18 @@ export const main = (topic: string, payload: string) => {
         }
       }
       break;
+    case 'flash':
+      if (
+        message.brightness !== undefined &&
+        message.speed !== undefined &&
+        message.theme !== undefined
+      ) {
+        const theme = themes.find((t) => t.name === message.theme);
+        if (theme !== undefined) {
+          conv(mainInterval, message.brightness, message.speed, theme);
+        }
+      }
+      break;
     case 'off':
       off(mainInterval);
   }

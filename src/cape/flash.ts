@@ -3,7 +3,7 @@ import ws281x from 'rpi-ws281x-native';
 import { expandedMappingJoined } from './structure';
 import { Theme, colorwheel, fade } from './colourThems';
 
-export const conv = (
+export const flash = (
   interval: NodeJS.Timeout | null,
   brightness: number,
   speed: number,

@@ -45,6 +45,16 @@ const main = (topic, payload) => {
                 }
             }
             break;
+        case 'flash':
+            if (message.brightness !== undefined &&
+                message.speed !== undefined &&
+                message.theme !== undefined) {
+                const theme = colourThems_1.themes.find((t) => t.name === message.theme);
+                if (theme !== undefined) {
+                    (0, conv_1.conv)(mainInterval, message.brightness, message.speed, theme);
+                }
+            }
+            break;
         case 'off':
             (0, off_1.off)(mainInterval);
     }

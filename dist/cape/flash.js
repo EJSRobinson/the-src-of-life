@@ -3,12 +3,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.conv = void 0;
+exports.flash = void 0;
 const rpi_ws281x_native_1 = __importDefault(require("rpi-ws281x-native"));
 //import { deadPixels } from './structure';
 const structure_1 = require("./structure");
 const colourThems_1 = require("./colourThems");
-const conv = (interval, brightness, speed, theme) => {
+const flash = (interval, brightness, speed, theme) => {
     const ledLength = 150;
     const channel = (0, rpi_ws281x_native_1.default)(ledLength, {
         stripType: rpi_ws281x_native_1.default.stripType.WS2811,
@@ -46,4 +46,4 @@ const conv = (interval, brightness, speed, theme) => {
         rpi_ws281x_native_1.default.render(colorArray);
     }, 1000 / speed);
 };
-exports.conv = conv;
+exports.flash = flash;
