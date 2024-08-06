@@ -27,7 +27,7 @@ export const themes: Theme[] = [
   },
   {
     name: 'ruby',
-    lower: 210,
+    lower: 195,
     upper: 245,
   },
 ];
