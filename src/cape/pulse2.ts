@@ -72,7 +72,7 @@ export const pulse2 = (
       offset = 1;
       direction = true;
     }
-    offset2 = offset2 + 0.05;
+    offset2 = offset2 + 0.1;
     if (offset2 > 1) {
       offset2 = 0;
     }
