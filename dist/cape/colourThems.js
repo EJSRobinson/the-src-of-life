@@ -4,19 +4,21 @@ exports.colorwheel = exports.fade = exports.themes = void 0;
 exports.themes = [
     {
         name: 'red',
-        colours: [0xff0000, 0xff0000, 0xff4600, 0xffff00],
+        lower: 250,
+        upper: 15,
     },
 ];
-const fade = (theme, prop) => {
-    const start = theme.colours[0];
-    const end = theme.colours[1];
-    const normaliseProp = ((prop * 100) % 100) / 100;
-    if (end > start) {
-        return Math.round(start + (end - start) * normaliseProp);
+const fade = (theme, propotion) => {
+    const p = ((propotion * 100) % 100) / 100;
+    let delta = 0;
+    if (theme.lower > theme.upper) {
+        delta = 255 - theme.lower + theme.upper;
     }
     else {
-        return Math.round(start - (start - end) * normaliseProp);
+        delta = theme.upper - theme.lower;
     }
+    const result = theme.lower + Math.round(delta * p);
+    return result % 255;
 };
 exports.fade = fade;
 function colorwheel(pos) {

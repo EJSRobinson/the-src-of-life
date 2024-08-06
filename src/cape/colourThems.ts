@@ -1,24 +1,27 @@
 export type Theme = {
   name: string;
-  colours: number[];
+  lower: number;
+  upper: number;
 };
 
 export const themes: Theme[] = [
   {
     name: 'red',
-    colours: [0xff0000, 0xff0000, 0xff4600, 0xffff00],
+    lower: 250,
+    upper: 15,
   },
 ];
 
-export const fade = (theme: Theme, prop: number) => {
-  const start = theme.colours[0];
-  const end = theme.colours[1];
-  const normaliseProp = ((prop * 100) % 100) / 100;
-  if (end > start) {
-    return Math.round(start + (end - start) * normaliseProp);
+export const fade = (theme: Theme, propotion: number) => {
+  const p = ((propotion * 100) % 100) / 100;
+  let delta = 0;
+  if (theme.lower > theme.upper) {
+    delta = 255 - theme.lower + theme.upper;
   } else {
-    return Math.round(start - (start - end) * normaliseProp);
+    delta = theme.upper - theme.lower;
   }
+  const result = theme.lower + Math.round(delta * p);
+  return result % 255;
 };
 
 export function colorwheel(pos) {

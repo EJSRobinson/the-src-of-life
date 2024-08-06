@@ -54,7 +54,7 @@ const pulse2 = (interval, brightness, speed, theme) => {
                 }
                 else {
                     for (let i = 0; i < segment.addrs.length; i++) {
-                        colorArray[segment.addrs[i]] = (0, colourThems_1.colorwheel)(offset2);
+                        colorArray[segment.addrs[i]] = (0, colourThems_1.fade)(theme, offset2 + i / (segment.addrs.length - 1));
                     }
                 }
             }
@@ -73,8 +73,7 @@ const pulse2 = (interval, brightness, speed, theme) => {
             offset = 1;
             direction = true;
         }
-        console.log(offset2);
-        offset2 = offset2 + 1;
+        offset2 = offset2 + 0.05;
         if (offset2 === 256) {
             offset2 = 0;
         }
