@@ -22,6 +22,11 @@ exports.themes = [
         lower: 0,
         upper: 255,
     },
+    {
+        name: 'ruby',
+        lower: 210,
+        upper: 245,
+    },
 ];
 const fade = (theme, propotion) => {
     const p = ((propotion * 100) % 100) / 100;

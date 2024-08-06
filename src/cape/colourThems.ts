@@ -25,6 +25,11 @@ export const themes: Theme[] = [
     lower: 0,
     upper: 255,
   },
+  {
+    name: 'ruby',
+    lower: 210,
+    upper: 245,
+  },
 ];
 
 export const fade = (theme: Theme, propotion: number) => {
