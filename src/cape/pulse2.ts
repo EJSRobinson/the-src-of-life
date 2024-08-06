@@ -52,7 +52,9 @@ export const pulse2 = (
           }
         } else {
           for (let i = 0; i < segment.addrs.length; i++) {
-            colorArray[segment.addrs[i]] = fade(theme, offset2 + i / (segment.addrs.length - 1));
+            colorArray[segment.addrs[i]] = colorwheel(
+              fade(theme, offset2 + i / (segment.addrs.length - 1)),
+            );
           }
         }
       }
@@ -71,7 +73,7 @@ export const pulse2 = (
       direction = true;
     }
     offset2 = offset2 + 0.05;
-    if (offset2 === 256) {
+    if (offset2 > 1) {
       offset2 = 0;
     }
     ws281x.render(colorArray);
