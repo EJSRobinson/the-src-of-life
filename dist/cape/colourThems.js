@@ -33,7 +33,6 @@ const fade = (theme, propotion) => {
         delta = theme.upper - theme.lower;
     }
     const result = theme.lower + Math.round(delta * p);
-    console.log(result);
     return result % 255;
 };
 exports.fade = fade;
