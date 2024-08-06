@@ -52,7 +52,7 @@ export const pulse2 = (
           }
         } else {
           for (let i = 0; i < segment.addrs.length; i++) {
-            colorArray[segment.addrs[i]] = colorwheel(128);
+            colorArray[segment.addrs[i]] = colorwheel(64);
           }
         }
       }
