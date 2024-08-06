@@ -7,8 +7,23 @@ export type Theme = {
 export const themes: Theme[] = [
   {
     name: 'red',
-    lower: 250,
-    upper: 15,
+    lower: 248,
+    upper: 13,
+  },
+  {
+    name: 'green',
+    lower: 80,
+    upper: 120,
+  },
+  {
+    name: 'blue',
+    lower: 160,
+    upper: 180,
+  },
+  {
+    name: 'rainbow',
+    lower: 0,
+    upper: 255,
   },
 ];
 
