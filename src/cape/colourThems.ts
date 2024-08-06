@@ -17,8 +17,8 @@ export const themes: Theme[] = [
   },
   {
     name: 'blue',
-    lower: 160,
-    upper: 180,
+    lower: 140,
+    upper: 190,
   },
   {
     name: 'rainbow',

@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.main = void 0;
 const colourThems_1 = require("./colourThems");
+const conv_1 = require("./conv");
 const off_1 = require("./off");
 const pulse_1 = require("./pulse");
 const pulse2_1 = require("./pulse2");
@@ -31,6 +32,16 @@ const main = (topic, payload) => {
                 const theme = colourThems_1.themes.find((t) => t.name === message.theme);
                 if (theme !== undefined) {
                     (0, pulse2_1.pulse2)(mainInterval, message.brightness, message.speed, theme);
+                }
+            }
+            break;
+        case 'conv':
+            if (message.brightness !== undefined &&
+                message.speed !== undefined &&
+                message.theme !== undefined) {
+                const theme = colourThems_1.themes.find((t) => t.name === message.theme);
+                if (theme !== undefined) {
+                    (0, conv_1.conv)(mainInterval, message.brightness, message.speed, theme);
                 }
             }
             break;
