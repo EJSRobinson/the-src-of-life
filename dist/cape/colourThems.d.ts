@@ -4,3 +4,4 @@ export type Theme = {
 };
 export declare const themes: Theme[];
 export declare const fade: (theme: Theme, prop: number) => number;
+export declare function colorwheel(pos: any): number;

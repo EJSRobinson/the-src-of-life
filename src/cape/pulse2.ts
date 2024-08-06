@@ -1,7 +1,7 @@
 import ws281x from 'rpi-ws281x-native';
 //import { deadPixels } from './structure';
 import { expandedMappingJoined } from './structure';
-import { Theme, fade } from './colourThems';
+import { Theme, colorwheel } from './colourThems';
 
 export const pulse2 = (
   interval: NodeJS.Timeout | null,
@@ -52,7 +52,7 @@ export const pulse2 = (
           }
         } else {
           for (let i = 0; i < segment.addrs.length; i++) {
-            colorArray[segment.addrs[i]] = fade(theme, offset2 + i / (segment.addrs.length - 1));
+            colorArray[segment.addrs[i]] = colorwheel(0);
           }
         }
       }
