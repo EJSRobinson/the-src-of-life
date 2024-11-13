@@ -28,6 +28,7 @@
     "keypress": "^0.2.1",
     "mosca": "^2.8.3",
     "mqtt": "^5.9.1",
+    "node-microphone": "^0.1.6",
     "rpi-ws281x": "^1.0.36",
     "rpi-ws281x-native": "^1.0.4"
   }

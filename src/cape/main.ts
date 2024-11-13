@@ -1,6 +1,6 @@
 import { themes } from './colourThems';
 import { conv } from './conv';
-import { flash } from './flash';
+// import { flash } from './flash';
 import { off } from './off';
 import { pulse } from './pulse';
 import { pulse2 } from './pulse2';
@@ -56,7 +56,7 @@ export const main = (topic: string, payload: string) => {
       ) {
         const theme = themes.find((t) => t.name === message.theme);
         if (theme !== undefined) {
-          flash(mainInterval, message.brightness, message.speed, theme);
+          // flash(mainInterval, message.brightness, message.speed, theme);
         }
       }
       break;
