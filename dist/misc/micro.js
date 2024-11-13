@@ -19,7 +19,8 @@ setTimeout(() => {
     mic.stopRecording();
 }, 3000);
 mic.on('info', (info) => {
-    console.log('Info ->', info);
+    // convert info to string
+    console.log('Info ->', info.toString());
 });
 mic.on('error', (error) => {
     console.log('Error ->', error);
