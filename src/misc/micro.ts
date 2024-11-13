@@ -14,10 +14,10 @@ setTimeout(() => {
   mic.stopRecording();
 }, 3000);
 mic.on('info', (info) => {
-  console.log(info);
+  console.log('Info ->', info);
 });
 mic.on('error', (error) => {
-  console.log(error);
+  console.log('Error ->', error);
 });
 mic.on('data', (data) => {
   console.log('Data ->', data);
