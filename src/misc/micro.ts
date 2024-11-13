@@ -1,4 +1,4 @@
-import * as Mic from 'node-microphone';
+import Mic from 'node-microphone';
 const mic = new Mic();
 mic.startRecording({
   bitwidth: 16,
