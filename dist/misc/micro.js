@@ -10,7 +10,7 @@ mic.startRecording({
     encoding: 'signed-integer',
     rate: 44100,
     channels: 1,
-    device: 'hw:1,0',
+    device: 'hw:0,0',
     useDataEmitter: true,
 });
 // micStream.pipe(myWritableStream);
