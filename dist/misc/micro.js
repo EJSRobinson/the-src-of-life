@@ -25,5 +25,5 @@ mic.on('error', (error) => {
     console.log(error);
 });
 mic.on('data', (data) => {
-    console.log(data);
+    console.log('Data ->', data);
 });
