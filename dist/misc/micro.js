@@ -34,7 +34,11 @@ const recording = recorder.record({
     recorder: 'arecord',
     device: 'hw:1,0',
 });
+console.log('Recording started');
 recording.stream().pipe(file);
+recording.stream().on('error', (err) => {
+    console.error('recorder threw an error:', err);
+});
 // Pause recording after one second
 setTimeout(() => {
     recording.pause();
