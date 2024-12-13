@@ -6,7 +6,7 @@ import { fft, util } from 'fft-js';
 
 // const file = fs.createWriteStream('output.wav', { encoding: 'binary' });
 
-const resolution = 50;
+const resolution = 75;
 const width = 150;
 
 const opts = {
