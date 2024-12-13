@@ -5,7 +5,12 @@ import * as fs from 'fs';
 
 const file = fs.createWriteStream('output.wav', { encoding: 'binary' });
 
-const recording = recorder.record();
+const recording = recorder.record({
+  sampleRate: 44100,
+  channels: 1,
+  recorder: 'arecord',
+  device: 'hw:1,0',
+});
 recording.stream().pipe(file);
 
 // Pause recording after one second
