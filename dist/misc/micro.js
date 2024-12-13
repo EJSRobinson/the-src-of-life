@@ -53,7 +53,7 @@ const dataTest = {
 // Append the bar chart to the screen
 screen.append(line);
 screen.render();
-// line.setData(dataTest.x, dataTest.y as contrib.Widgets.LineData[]);
+line.setData(dataTest.x, dataTest.y);
 console.log('Recording started');
 function resizeToPowerOfTwo(arr) {
     const length = arr.length;
