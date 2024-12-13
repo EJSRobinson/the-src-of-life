@@ -29,7 +29,7 @@ const recorder = __importStar(require("node-record-lpcm16"));
 const fft_js_1 = require("fft-js");
 // import * as fs from 'fs';
 // const file = fs.createWriteStream('output.wav', { encoding: 'binary' });
-const resolution = 512;
+const resolution = 1024;
 const cap = 75;
 const width = 150;
 const opts = {
