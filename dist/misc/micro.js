@@ -29,7 +29,8 @@ const recorder = __importStar(require("node-record-lpcm16"));
 const fft_js_1 = require("fft-js");
 // import * as fs from 'fs';
 // const file = fs.createWriteStream('output.wav', { encoding: 'binary' });
-const resolution = 75;
+const resolution = 300;
+const cap = 75;
 const width = 150;
 const opts = {
     sampleRate: 44100,
@@ -90,7 +91,7 @@ recording.stream().on('data', (data) => {
             const avgMagnitude = bin.reduce((acc, val) => acc + val.magnitude, 0) / bin.length;
             bins.push({ f: avgFrequency, mag: avgMagnitude });
         }
-        drawVuMeter(bins); // Update the visualization
+        drawVuMeter(bins.slice(0, cap)); // Update the visualization
     }
     catch (error) {
         console.error('Error processing audio data:', error);

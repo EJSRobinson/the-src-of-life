@@ -6,7 +6,8 @@ import { fft, util } from 'fft-js';
 
 // const file = fs.createWriteStream('output.wav', { encoding: 'binary' });
 
-const resolution = 75;
+const resolution = 300;
+const cap = 75;
 const width = 150;
 
 const opts = {
@@ -81,7 +82,7 @@ recording.stream().on('data', (data: Buffer) => {
       const avgMagnitude = bin.reduce((acc, val) => acc + val.magnitude, 0) / bin.length;
       bins.push({ f: avgFrequency, mag: avgMagnitude });
     }
-    drawVuMeter(bins); // Update the visualization
+    drawVuMeter(bins.slice(0, cap)); // Update the visualization
   } catch (error) {
     console.error('Error processing audio data:', error);
   }
