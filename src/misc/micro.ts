@@ -20,16 +20,17 @@ recording.stream().on('error', (err) => {
 });
 
 // Pause recording after one second
-setTimeout(() => {
-  recording.pause();
-}, 1000);
+// setTimeout(() => {
+//   recording.pause();
+// }, 1000);
 
-// Resume another second later
-setTimeout(() => {
-  recording.resume();
-}, 2000);
+// // Resume another second later
+// setTimeout(() => {
+//   recording.resume();
+// }, 2000);
 
 // Stop recording after three seconds
 setTimeout(() => {
+  console.log('Recording stopped');
   recording.stop();
-}, 3000);
+}, 10000);
