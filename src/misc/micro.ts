@@ -1,9 +1,9 @@
 // const recorder = require('node-record-lpcm16')
 // const fs = require('fs')
 import * as recorder from 'node-record-lpcm16';
-import * as fs from 'fs';
+// import * as fs from 'fs';
 
-const file = fs.createWriteStream('output.wav', { encoding: 'binary' });
+// const file = fs.createWriteStream('output.wav', { encoding: 'binary' });
 
 const recording = recorder.record({
   sampleRate: 44100,
@@ -13,7 +13,7 @@ const recording = recorder.record({
 });
 
 console.log('Recording started');
-recording.stream().pipe(file);
+// recording.stream().pipe(file);
 
 // real time log datastream
 recording.stream().on('data', (data) => {
