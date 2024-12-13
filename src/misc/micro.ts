@@ -1,46 +1,24 @@
-import * as fs from 'fs';
+// const recorder = require('node-record-lpcm16')
+// const fs = require('fs')
 import * as recorder from 'node-record-lpcm16';
+import * as fs from 'fs';
 
-// Define the configuration interface for recording options
-interface RecordOptions {
-  device: string;
-  channels: number;
-  sampleRate: number;
-  encoding: string;
-}
+const file = fs.createWriteStream('output.wav', { encoding: 'binary' });
 
-// Define configuration for the microphone
-const options: RecordOptions = {
-  device: 'hw:1,0', // Replace with your microphone's device
-  channels: 1, // Mono channel
-  sampleRate: 44100, // Sample rate in Hz
-  encoding: 'LINEAR16',
-};
+const recording = recorder.record();
+recording.stream().pipe(file);
 
-// Path for the output file
-const outputPath: string = 'output.wav';
+// Pause recording after one second
+setTimeout(() => {
+  recording.pause();
+}, 1000);
 
-// Create a writable stream to save audio to a file
-const fileStream = fs.createWriteStream(outputPath, { encoding: 'binary' });
+// Resume another second later
+setTimeout(() => {
+  recording.resume();
+}, 2000);
 
-// Function to start recording
-const startRecording = (): void => {
-  console.log('Recording... Press Ctrl+C to stop.');
-  const recording = recorder.record(options);
-  recording.stream().pipe(fileStream);
-
-  // Handle audio data in real-time (optional)
-  // audioStream.on('data', (chunk: Buffer) => {
-  //   console.log('Received audio data chunk of size:', chunk.length);
-  // });
-
-  // Stop recording on Ctrl+C
-  process.on('SIGINT', () => {
-    recording.stop();
-    console.log(`\nRecording stopped. Audio saved as ${outputPath}`);
-    process.exit();
-  });
-};
-
-// Start the recording process
-startRecording();
+// Stop recording after three seconds
+setTimeout(() => {
+  recording.stop();
+}, 3000);

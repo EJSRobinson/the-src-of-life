@@ -23,34 +23,22 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const fs = __importStar(require("fs"));
+// const recorder = require('node-record-lpcm16')
+// const fs = require('fs')
 const recorder = __importStar(require("node-record-lpcm16"));
-// Define configuration for the microphone
-const options = {
-    device: 'hw:1,0',
-    channels: 1,
-    sampleRate: 44100,
-    encoding: 'LINEAR16',
-};
-// Path for the output file
-const outputPath = 'output.wav';
-// Create a writable stream to save audio to a file
-const fileStream = fs.createWriteStream(outputPath, { encoding: 'binary' });
-// Function to start recording
-const startRecording = () => {
-    console.log('Recording... Press Ctrl+C to stop.');
-    const recording = recorder.record(options);
-    recording.stream().pipe(fileStream);
-    // Handle audio data in real-time (optional)
-    // audioStream.on('data', (chunk: Buffer) => {
-    //   console.log('Received audio data chunk of size:', chunk.length);
-    // });
-    // Stop recording on Ctrl+C
-    process.on('SIGINT', () => {
-        recording.stop();
-        console.log(`\nRecording stopped. Audio saved as ${outputPath}`);
-        process.exit();
-    });
-};
-// Start the recording process
-startRecording();
+const fs = __importStar(require("fs"));
+const file = fs.createWriteStream('output.wav', { encoding: 'binary' });
+const recording = recorder.record();
+recording.stream().pipe(file);
+// Pause recording after one second
+setTimeout(() => {
+    recording.pause();
+}, 1000);
+// Resume another second later
+setTimeout(() => {
+    recording.resume();
+}, 2000);
+// Stop recording after three seconds
+setTimeout(() => {
+    recording.stop();
+}, 3000);
