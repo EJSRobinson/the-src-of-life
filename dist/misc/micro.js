@@ -24,12 +24,12 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = __importStar(require("fs"));
-const node_record_lpcm16_1 = require("node-record-lpcm16");
+const recorder = __importStar(require("node-record-lpcm16"));
 // Define configuration for the microphone
 const options = {
     device: 'hw:1,0',
     channels: 1,
-    rate: 16000,
+    sampleRate: 44100,
     encoding: 'LINEAR16',
 };
 // Path for the output file
@@ -39,16 +39,15 @@ const fileStream = fs.createWriteStream(outputPath);
 // Function to start recording
 const startRecording = () => {
     console.log('Recording... Press Ctrl+C to stop.');
-    const audioStream = (0, node_record_lpcm16_1.start)(options);
-    // Pipe audio stream to the file
-    audioStream.pipe(fileStream);
+    const recording = recorder.record(options);
+    recording.stream().pipe(fileStream);
     // Handle audio data in real-time (optional)
-    audioStream.on('data', (chunk) => {
-        console.log('Received audio data chunk of size:', chunk.length);
-    });
+    // audioStream.on('data', (chunk: Buffer) => {
+    //   console.log('Received audio data chunk of size:', chunk.length);
+    // });
     // Stop recording on Ctrl+C
     process.on('SIGINT', () => {
-        (0, node_record_lpcm16_1.stop)();
+        recording.stop();
         console.log(`\nRecording stopped. Audio saved as ${outputPath}`);
         process.exit();
     });
