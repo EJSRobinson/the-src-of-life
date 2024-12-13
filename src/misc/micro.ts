@@ -21,7 +21,7 @@ const options: RecordOptions = {
 const outputPath: string = 'output.wav';
 
 // Create a writable stream to save audio to a file
-const fileStream = fs.createWriteStream(outputPath);
+const fileStream = fs.createWriteStream(outputPath, { encoding: 'binary' });
 
 // Function to start recording
 const startRecording = (): void => {
