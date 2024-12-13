@@ -4,7 +4,7 @@ import * as recorder from 'node-record-lpcm16';
 import { fft, util } from 'fft-js';
 // import * as fs from 'fs';
 
-import ws281x from 'rpi-ws281x-native';
+import * as ws281x from 'rpi-ws281x';
 
 const ledLength = 194;
 

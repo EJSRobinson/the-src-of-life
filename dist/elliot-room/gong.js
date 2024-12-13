@@ -22,19 +22,16 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 // const recorder = require('node-record-lpcm16')
 // const fs = require('fs')
 const recorder = __importStar(require("node-record-lpcm16"));
 const fft_js_1 = require("fft-js");
 // import * as fs from 'fs';
-const rpi_ws281x_native_1 = __importDefault(require("rpi-ws281x-native"));
+const ws281x = __importStar(require("rpi-ws281x"));
 const ledLength = 194;
-const channel = (0, rpi_ws281x_native_1.default)(ledLength, {
-    stripType: rpi_ws281x_native_1.default.stripType.WS2811,
+const channel = ws281x(ledLength, {
+    stripType: ws281x.stripType.WS2811,
     gpio: 21,
     brightness: 255,
 });
@@ -57,7 +54,7 @@ const renderSparks = (a, b, c, d) => {
             colorArray[i] = 0xff00ff;
         }
     }
-    rpi_ws281x_native_1.default.render(colorArray);
+    ws281x.render(colorArray);
 };
 const resolution = 2048;
 // const cap = 75;
