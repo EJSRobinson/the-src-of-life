@@ -22,7 +22,7 @@ console.log('Recording started');
 recording.stream().on('data', (data: Buffer) => {
   try {
     console.log('data:', data.length);
-    const data1 = data.slice(0, 32);
+    const data1 = data.slice(0, 8192);
     // Decode 16-bit PCM to Float32
     const dataArr = new Float32Array(data1.length / 2); // Divide by 2 for 16-bit PCM
     for (let i = 0; i < data1.length; i += 2) {
