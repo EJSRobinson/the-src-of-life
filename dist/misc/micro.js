@@ -37,7 +37,7 @@ const opts = {
     channels: 1,
     recorder: 'arecord',
     device: 'hw:1,0',
-    bufferSize: 1024,
+    bufferSize: 512,
 };
 const recording = recorder.record(opts);
 // Append the bar chart to the screen
