@@ -16,24 +16,28 @@ const opts = {
 const recording = recorder.record(opts);
 
 console.log('Recording started');
-// recording.stream().pipe(file);
+
+function resizeToPowerOfTwo(arr: Float32Array): Float32Array {
+  const length = arr.length;
+  const powerOfTwo = Math.pow(2, Math.floor(Math.log2(length))); // Nearest lower power of two
+  return arr.slice(0, powerOfTwo);
+}
 
 // real time log datastream
 recording.stream().on('data', (data: Buffer) => {
   try {
-    console.log('data:', data.length);
-    const data1 = data.slice(0, 8192);
     // Decode 16-bit PCM to Float32
-    const dataArr = new Float32Array(data1.length / 2); // Divide by 2 for 16-bit PCM
-    for (let i = 0; i < data1.length; i += 2) {
+    const dataArr = new Float32Array(data.length / 2); // Divide by 2 for 16-bit PCM
+    for (let i = 0; i < data.length; i += 2) {
       const value = data.readInt16LE(i); // Read 16-bit signed integer
       dataArr[i / 2] = value / 32768; // Normalize to range [-1, 1]
     }
 
-    console.log(dataArr);
+    // Resize to nearest lower power of two
+    const resizedData = resizeToPowerOfTwo(dataArr);
 
     // Perform FFT
-    const phasors = fft(dataArr);
+    const phasors = fft(resizedData);
     const frequencies = util.fftFreq(phasors, opts.sampleRate);
     const magnitudes = util.fftMag(phasors);
 
