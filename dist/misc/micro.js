@@ -29,6 +29,8 @@ const recorder = __importStar(require("node-record-lpcm16"));
 const fft_js_1 = require("fft-js");
 // import * as fs from 'fs';
 // const file = fs.createWriteStream('output.wav', { encoding: 'binary' });
+const resolution = 50;
+const width = 150;
 const opts = {
     sampleRate: 44100,
     channels: 1,
@@ -50,7 +52,7 @@ function drawVuMeter(bins) {
     console.log(CLEAR_SCREEN); // Clear the screen
     bins.forEach((bin, index) => {
         const magnitude = Math.min(Math.max(bin.mag, 0), 1); // Clamp magnitude between 0 and 1
-        const barLength = Math.floor(magnitude * 40); // Scale magnitude to 20 rows
+        const barLength = Math.floor(magnitude * width); // Scale magnitude to 20 rows
         const color = COLORS[index % COLORS.length]; // Cycle through colors
         // Draw the bar
         console.log(`${color}${' '.repeat(barLength)}${RESET_COLOR} ${bin.f.toFixed(1)} Hz`);
@@ -77,7 +79,7 @@ recording.stream().on('data', (data) => {
         }));
         // console.log(both);
         // map results into n frequency bins, each bin should an object with an average frequency and a average magnitude
-        const n = 10;
+        const n = resolution;
         const binSize = frequencies.length / n;
         const bins = [];
         for (let i = 0; i < n; i++) {
