@@ -129,10 +129,10 @@ recording.stream().on('data', (data) => {
         }
         // drawVuMeter(bins.slice(0, cap)); // Update the visualization
         // 484.5, 516.8, 635.2, 570.6
-        const a = (_a = bins.find((bin) => bin.f === 484.5)) === null || _a === void 0 ? void 0 : _a.mag;
-        const b = (_b = bins.find((bin) => bin.f === 516.8)) === null || _b === void 0 ? void 0 : _b.mag;
-        const c = (_c = bins.find((bin) => bin.f === 635.2)) === null || _c === void 0 ? void 0 : _c.mag;
-        const d = (_d = bins.find((bin) => bin.f === 570.6)) === null || _d === void 0 ? void 0 : _d.mag;
+        const a = (_a = bins.find((bin) => bin.f > 484 && bin.f < 485)) === null || _a === void 0 ? void 0 : _a.mag;
+        const b = (_b = bins.find((bin) => bin.f > 516 && bin.f < 517)) === null || _b === void 0 ? void 0 : _b.mag;
+        const c = (_c = bins.find((bin) => bin.f > 635 && bin.f < 636)) === null || _c === void 0 ? void 0 : _c.mag;
+        const d = (_d = bins.find((bin) => bin.f > 570 && bin.f < 571)) === null || _d === void 0 ? void 0 : _d.mag;
         if (a && b && c && d) {
             console.log('Sparks:', a, b, c, d);
             renderSparks(a, b, c, d);
