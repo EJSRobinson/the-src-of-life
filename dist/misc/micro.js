@@ -40,17 +40,25 @@ console.log('Recording started');
 // recording.stream().pipe(file);
 // real time log datastream
 recording.stream().on('data', (data) => {
-    // fft each data
-    // console.log(data.length, data);
-    if (data.length > 11000) {
-        const dataArr = new Float32Array(data.buffer, 0, data.length / 4);
+    try {
+        // Decode 16-bit PCM to Float32
+        const dataArr = new Float32Array(data.length / 2); // Divide by 2 for 16-bit PCM
+        for (let i = 0; i < data.length; i += 2) {
+            const value = data.readInt16LE(i); // Read 16-bit signed integer
+            dataArr[i / 2] = value / 32768; // Normalize to range [-1, 1]
+        }
+        // Perform FFT
         const phasors = (0, fft_js_1.fft)(dataArr);
         const frequencies = fft_js_1.util.fftFreq(phasors, opts.sampleRate);
         const magnitudes = fft_js_1.util.fftMag(phasors);
-        const both = frequencies.map((f, ix) => {
-            return { frequency: f, magnitude: magnitudes[ix] };
-        });
+        const both = frequencies.map((f, ix) => ({
+            frequency: f,
+            magnitude: magnitudes[ix],
+        }));
         console.log(both);
+    }
+    catch (error) {
+        console.error('Error processing audio data:', error);
     }
 });
 recording.stream().on('error', (err) => {
