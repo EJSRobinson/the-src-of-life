@@ -72,7 +72,7 @@ recording.stream().on('data', (data) => {
             const bin = both.slice(start, end);
             const avgFrequency = bin.reduce((acc, val) => acc + val.frequency, 0) / bin.length;
             const avgMagnitude = bin.reduce((acc, val) => acc + val.magnitude, 0) / bin.length;
-            bins.push({ avgFrequency, avgMagnitude });
+            bins.push({ f: avgFrequency, mag: avgMagnitude });
         }
         console.log(bins);
     }
