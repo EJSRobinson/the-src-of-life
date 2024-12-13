@@ -47,6 +47,7 @@ recording.stream().on('data', (data) => {
             const value = data.readInt16LE(i); // Read 16-bit signed integer
             dataArr[i / 2] = value / 32768; // Normalize to range [-1, 1]
         }
+        console.log(dataArr);
         // Perform FFT
         const phasors = (0, fft_js_1.fft)(dataArr);
         const frequencies = fft_js_1.util.fftFreq(phasors, opts.sampleRate);

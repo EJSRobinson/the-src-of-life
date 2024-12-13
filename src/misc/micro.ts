@@ -28,6 +28,8 @@ recording.stream().on('data', (data: Buffer) => {
       dataArr[i / 2] = value / 32768; // Normalize to range [-1, 1]
     }
 
+    console.log(dataArr);
+
     // Perform FFT
     const phasors = fft(dataArr);
     const frequencies = util.fftFreq(phasors, opts.sampleRate);
