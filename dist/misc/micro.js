@@ -22,12 +22,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = __importStar(require("fs"));
-const node_record_lpcm16_1 = __importDefault(require("node-record-lpcm16"));
+const node_record_lpcm16_1 = require("node-record-lpcm16");
 // Define configuration for the microphone
 const options = {
     device: 'hw:1,0',
@@ -42,7 +39,7 @@ const fileStream = fs.createWriteStream(outputPath);
 // Function to start recording
 const startRecording = () => {
     console.log('Recording... Press Ctrl+C to stop.');
-    const audioStream = node_record_lpcm16_1.default.start(options);
+    const audioStream = (0, node_record_lpcm16_1.start)(options);
     // Pipe audio stream to the file
     audioStream.pipe(fileStream);
     // Handle audio data in real-time (optional)
@@ -51,7 +48,7 @@ const startRecording = () => {
     });
     // Stop recording on Ctrl+C
     process.on('SIGINT', () => {
-        node_record_lpcm16_1.default.stop();
+        (0, node_record_lpcm16_1.stop)();
         console.log(`\nRecording stopped. Audio saved as ${outputPath}`);
         process.exit();
     });

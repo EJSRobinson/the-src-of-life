@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import record from 'node-record-lpcm16';
+import { start, stop } from 'node-record-lpcm16';
 
 // Define the configuration interface for recording options
 interface RecordOptions {
@@ -27,7 +27,7 @@ const fileStream = fs.createWriteStream(outputPath);
 const startRecording = (): void => {
   console.log('Recording... Press Ctrl+C to stop.');
 
-  const audioStream = record.start(options);
+  const audioStream = start(options);
 
   // Pipe audio stream to the file
   audioStream.pipe(fileStream);
@@ -39,7 +39,7 @@ const startRecording = (): void => {
 
   // Stop recording on Ctrl+C
   process.on('SIGINT', () => {
-    record.stop();
+    stop();
     console.log(`\nRecording stopped. Audio saved as ${outputPath}`);
     process.exit();
   });
