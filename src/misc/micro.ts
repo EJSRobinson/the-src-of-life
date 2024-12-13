@@ -80,7 +80,13 @@ recording.stream().on('error', (err) => {
 // }, 2000);
 
 // Stop recording after three seconds
-setTimeout(() => {
+// setTimeout(() => {
+//   console.log('Recording stopped');
+//   recording.stop();
+// }, 10000);
+
+// on crl+c stop
+process.on('SIGINT', () => {
   console.log('Recording stopped');
   recording.stop();
-}, 10000);
+});
