@@ -2,8 +2,6 @@
 // const fs = require('fs')
 import * as recorder from 'node-record-lpcm16';
 import { fft, util } from 'fft-js';
-import * as blessed from 'blessed';
-import * as contrib from 'blessed-contrib';
 // import * as fs from 'fs';
 
 // const file = fs.createWriteStream('output.wav', { encoding: 'binary' });
@@ -17,30 +15,33 @@ const opts = {
 
 const recording = recorder.record(opts);
 
-// Set up terminal UI
-const screen = blessed.screen();
-const line = contrib.line({
-  style: { line: 'yellow', text: 'green', baseline: 'black' },
-  xLabelPadding: 3,
-  xPadding: 5,
-  label: 'Title',
-});
-const dataTest = {
-  x: ['t1', 't2', 't3', 't4'],
-  y: [5, 1, 7, 5],
-};
-
 // Append the bar chart to the screen
-screen.append(line);
 
-screen.render();
-line.setData(dataTest.x, dataTest.y as contrib.Widgets.LineData[]);
 console.log('Recording started');
+
+const CLEAR_SCREEN = '\x1b[2J\x1b[H';
+const RESET_COLOR = '\x1b[0m';
+const COLORS = ['\x1b[41m', '\x1b[42m', '\x1b[43m', '\x1b[44m', '\x1b[45m', '\x1b[46m']; // Background colors
 
 function resizeToPowerOfTwo(arr: Float32Array): Float32Array {
   const length = arr.length;
   const powerOfTwo = Math.pow(2, Math.floor(Math.log2(length))); // Nearest lower power of two
   return arr.slice(0, powerOfTwo);
+}
+
+function drawVuMeter(bins: { f: number; mag: number }[]) {
+  console.log(CLEAR_SCREEN); // Clear the screen
+
+  bins.forEach((bin, index) => {
+    const magnitude = Math.min(Math.max(bin.mag, 0), 1); // Clamp magnitude between 0 and 1
+    const barLength = Math.floor(magnitude * 20); // Scale magnitude to 20 rows
+    const color = COLORS[index % COLORS.length]; // Cycle through colors
+
+    // Draw the bar
+    console.log(
+      `${color}${' '.repeat(barLength)}${RESET_COLOR} Bin ${index + 1} (${bin.f.toFixed(1)} Hz)`,
+    );
+  });
 }
 
 // real time log datastream
@@ -79,13 +80,7 @@ recording.stream().on('data', (data: Buffer) => {
       const avgMagnitude = bin.reduce((acc, val) => acc + val.magnitude, 0) / bin.length;
       bins.push({ f: avgFrequency, mag: avgMagnitude });
     }
-    // console.log(bins);
-    // Update bar chart with magnitudes
-    // barChart.setData({
-    //   titles: bins.map((_, i) => `Bin ${i + 1}`),
-    //   data: bins.map((bin) => bin.mag),
-    // });
-    screen.render();
+    drawVuMeter(bins); // Update the visualization
   } catch (error) {
     console.error('Error processing audio data:', error);
   }
