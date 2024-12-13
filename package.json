@@ -13,6 +13,7 @@
   "author": "Elliot Robinson",
   "license": "BSD-3-Clause",
   "devDependencies": {
+    "@types/blessed": "^0.1.25",
     "@types/node": "^20.10.1",
     "@typescript-eslint/eslint-plugin": "^6.13.1",
     "@typescript-eslint/parser": "^6.13.1",
@@ -25,6 +26,8 @@
   "dependencies": {
     "@types/mosca": "^2.8.8",
     "@types/mqtt": "^2.5.0",
+    "blessed": "^0.1.81",
+    "blessed-contrib": "^4.11.0",
     "fft-js": "^0.0.12",
     "keypress": "^0.2.1",
     "mosca": "^2.8.3",

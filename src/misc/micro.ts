@@ -2,6 +2,8 @@
 // const fs = require('fs')
 import * as recorder from 'node-record-lpcm16';
 import { fft, util } from 'fft-js';
+import * as blessed from 'blessed';
+import * as contrib from 'blessed-contrib';
 // import * as fs from 'fs';
 
 // const file = fs.createWriteStream('output.wav', { encoding: 'binary' });
@@ -15,6 +17,24 @@ const opts = {
 
 const recording = recorder.record(opts);
 
+// Set up terminal UI
+const screen = blessed.screen();
+const line = contrib.line({
+  style: { line: 'yellow', text: 'green', baseline: 'black' },
+  xLabelPadding: 3,
+  xPadding: 5,
+  label: 'Title',
+});
+const dataTest = {
+  x: ['t1', 't2', 't3', 't4'],
+  y: [5, 1, 7, 5],
+};
+
+// Append the bar chart to the screen
+screen.append(line);
+
+screen.render();
+// line.setData(dataTest.x, dataTest.y as contrib.Widgets.LineData[]);
 console.log('Recording started');
 
 function resizeToPowerOfTwo(arr: Float32Array): Float32Array {
@@ -59,7 +79,13 @@ recording.stream().on('data', (data: Buffer) => {
       const avgMagnitude = bin.reduce((acc, val) => acc + val.magnitude, 0) / bin.length;
       bins.push({ f: avgFrequency, mag: avgMagnitude });
     }
-    console.log(bins);
+    // console.log(bins);
+    // Update bar chart with magnitudes
+    // barChart.setData({
+    //   titles: bins.map((_, i) => `Bin ${i + 1}`),
+    //   data: bins.map((bin) => bin.mag),
+    // });
+    screen.render();
   } catch (error) {
     console.error('Error processing audio data:', error);
   }

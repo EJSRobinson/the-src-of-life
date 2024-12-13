@@ -27,6 +27,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // const fs = require('fs')
 const recorder = __importStar(require("node-record-lpcm16"));
 const fft_js_1 = require("fft-js");
+const blessed = __importStar(require("blessed"));
+const contrib = __importStar(require("blessed-contrib"));
 // import * as fs from 'fs';
 // const file = fs.createWriteStream('output.wav', { encoding: 'binary' });
 const opts = {
@@ -36,6 +38,22 @@ const opts = {
     device: 'hw:1,0',
 };
 const recording = recorder.record(opts);
+// Set up terminal UI
+const screen = blessed.screen();
+const line = contrib.line({
+    style: { line: 'yellow', text: 'green', baseline: 'black' },
+    xLabelPadding: 3,
+    xPadding: 5,
+    label: 'Title',
+});
+const dataTest = {
+    x: ['t1', 't2', 't3', 't4'],
+    y: [5, 1, 7, 5],
+};
+// Append the bar chart to the screen
+screen.append(line);
+screen.render();
+// line.setData(dataTest.x, dataTest.y as contrib.Widgets.LineData[]);
 console.log('Recording started');
 function resizeToPowerOfTwo(arr) {
     const length = arr.length;
@@ -74,7 +92,13 @@ recording.stream().on('data', (data) => {
             const avgMagnitude = bin.reduce((acc, val) => acc + val.magnitude, 0) / bin.length;
             bins.push({ f: avgFrequency, mag: avgMagnitude });
         }
-        console.log(bins);
+        // console.log(bins);
+        // Update bar chart with magnitudes
+        // barChart.setData({
+        //   titles: bins.map((_, i) => `Bin ${i + 1}`),
+        //   data: bins.map((bin) => bin.mag),
+        // });
+        screen.render();
     }
     catch (error) {
         console.error('Error processing audio data:', error);
