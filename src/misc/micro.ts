@@ -21,16 +21,17 @@ console.log('Recording started');
 // real time log datastream
 recording.stream().on('data', (data: Buffer) => {
   // fft each data
-  console.log(data.length);
-  const dataArr = Array.from(data);
-  console.log(dataArr.length, dataArr);
-  const phasors = fft(dataArr);
-  const frequencies = util.fftFreq(phasors, opts.sampleRate);
-  const magnitudes = util.fftMag(phasors);
-  const both = frequencies.map((f, ix) => {
-    return { frequency: f, magnitude: magnitudes[ix] };
-  });
-  console.log(both);
+  console.log(data.length, data);
+
+  // const dataArr = Array.from(data);
+  // console.log(dataArr.length, dataArr);
+  // const phasors = fft(dataArr);
+  // const frequencies = util.fftFreq(phasors, opts.sampleRate);
+  // const magnitudes = util.fftMag(phasors);
+  // const both = frequencies.map((f, ix) => {
+  //   return { frequency: f, magnitude: magnitudes[ix] };
+  // });
+  // console.log(both);
 });
 
 recording.stream().on('error', (err) => {

@@ -26,7 +26,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // const recorder = require('node-record-lpcm16')
 // const fs = require('fs')
 const recorder = __importStar(require("node-record-lpcm16"));
-const fft_js_1 = require("fft-js");
 // import * as fs from 'fs';
 // const file = fs.createWriteStream('output.wav', { encoding: 'binary' });
 const opts = {
@@ -41,16 +40,16 @@ console.log('Recording started');
 // real time log datastream
 recording.stream().on('data', (data) => {
     // fft each data
-    console.log(data.length);
-    const dataArr = Array.from(data);
-    console.log(dataArr.length, dataArr);
-    const phasors = (0, fft_js_1.fft)(dataArr);
-    const frequencies = fft_js_1.util.fftFreq(phasors, opts.sampleRate);
-    const magnitudes = fft_js_1.util.fftMag(phasors);
-    const both = frequencies.map((f, ix) => {
-        return { frequency: f, magnitude: magnitudes[ix] };
-    });
-    console.log(both);
+    console.log(data.length, data);
+    // const dataArr = Array.from(data);
+    // console.log(dataArr.length, dataArr);
+    // const phasors = fft(dataArr);
+    // const frequencies = util.fftFreq(phasors, opts.sampleRate);
+    // const magnitudes = util.fftMag(phasors);
+    // const both = frequencies.map((f, ix) => {
+    //   return { frequency: f, magnitude: magnitudes[ix] };
+    // });
+    // console.log(both);
 });
 recording.stream().on('error', (err) => {
     console.error('recorder threw an error:', err);
