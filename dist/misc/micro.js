@@ -42,6 +42,7 @@ console.log('Recording started');
 recording.stream().on('data', (data) => {
     // fft each data
     const dataArr = Array.from(data);
+    console.log(dataArr.length, dataArr);
     const phasors = (0, fft_js_1.fft)(dataArr);
     const frequencies = fft_js_1.util.fftFreq(phasors, opts.sampleRate);
     const magnitudes = fft_js_1.util.fftMag(phasors);
