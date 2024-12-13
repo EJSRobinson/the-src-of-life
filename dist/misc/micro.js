@@ -61,7 +61,20 @@ recording.stream().on('data', (data) => {
             frequency: f,
             magnitude: magnitudes[ix],
         }));
-        console.log(both);
+        // console.log(both);
+        // map results into n frequency bins, each bin should an object with an average frequency and a average magnitude
+        const n = 10;
+        const binSize = frequencies.length / n;
+        const bins = [];
+        for (let i = 0; i < n; i++) {
+            const start = Math.floor(i * binSize);
+            const end = Math.floor((i + 1) * binSize);
+            const bin = both.slice(start, end);
+            const avgFrequency = bin.reduce((acc, val) => acc + val.frequency, 0) / bin.length;
+            const avgMagnitude = bin.reduce((acc, val) => acc + val.magnitude, 0) / bin.length;
+            bins.push({ avgFrequency, avgMagnitude });
+        }
+        console.log(bins);
     }
     catch (error) {
         console.error('Error processing audio data:', error);
