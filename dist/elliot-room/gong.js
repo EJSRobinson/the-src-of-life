@@ -30,15 +30,16 @@ const fft_js_1 = require("fft-js");
 // import * as fs from 'fs';
 const ws281x = __importStar(require("rpi-ws281x"));
 const ledLength = 194;
-const channel = ws281x(ledLength, {
-    stripType: ws281x.stripType.WS2811,
+const strip = ws281x.configure({
+    stripType: 'grb',
     gpio: 21,
     brightness: 255,
+    leds: ledLength,
 });
 // this funtion render different colour flashes at random locations, the probability of each colour is determined by vars a, b, c, d which takes values 0 - 1
 const renderSparks = (a, b, c, d) => {
-    const colorArray = channel.array;
-    for (let i = 0; i < channel.count; i++) {
+    const colorArray = new Uint32Array(ledLength);
+    for (let i = 0; i < ledLength; i++) {
         colorArray[i] = 0x000000;
         const rand = Math.random();
         if (rand < a) {
@@ -54,7 +55,7 @@ const renderSparks = (a, b, c, d) => {
             colorArray[i] = 0xff00ff;
         }
     }
-    ws281x.render(colorArray);
+    strip.render(colorArray);
 };
 const resolution = 2048;
 // const cap = 75;
