@@ -23,9 +23,11 @@ recording.stream().on('data', (data: Buffer) => {
   // fft each data
   // console.log(data.length, data);
   if (data.length > 11000) {
-    const dataArr = Array.from(data);
+    // const dataArr = Array.from(data);
+    const dataArr = [1, 0, 1, 0];
     console.log(dataArr.length, dataArr);
     const phasors = fft(dataArr);
+    console.log(phasors);
     const frequencies = util.fftFreq(phasors, opts.sampleRate);
     const magnitudes = util.fftMag(phasors);
     const both = frequencies.map((f, ix) => {
