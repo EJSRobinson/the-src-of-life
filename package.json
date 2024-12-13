@@ -25,6 +25,7 @@
   "dependencies": {
     "@types/mosca": "^2.8.8",
     "@types/mqtt": "^2.5.0",
+    "fft-js": "^0.0.12",
     "keypress": "^0.2.1",
     "mosca": "^2.8.3",
     "mqtt": "^5.9.1",

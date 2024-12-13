@@ -1,23 +1,34 @@
 // const recorder = require('node-record-lpcm16')
 // const fs = require('fs')
 import * as recorder from 'node-record-lpcm16';
+import { fft, util } from 'fft-js';
 // import * as fs from 'fs';
 
 // const file = fs.createWriteStream('output.wav', { encoding: 'binary' });
 
-const recording = recorder.record({
+const opts = {
   sampleRate: 44100,
   channels: 1,
   recorder: 'arecord',
   device: 'hw:1,0',
-});
+};
+
+const recording = recorder.record(opts);
 
 console.log('Recording started');
 // recording.stream().pipe(file);
 
 // real time log datastream
-recording.stream().on('data', (data) => {
-  console.log(data);
+recording.stream().on('data', (data: Buffer) => {
+  // fft each data
+  const dataArr = Array.from(data);
+  const phasors = fft(dataArr);
+  const frequencies = util.fftFreq(phasors, opts.sampleRate);
+  const magnitudes = util.fftMag(phasors);
+  const both = frequencies.map((f, ix) => {
+    return { frequency: f, magnitude: magnitudes[ix] };
+  });
+  console.log(both);
 });
 
 recording.stream().on('error', (err) => {
