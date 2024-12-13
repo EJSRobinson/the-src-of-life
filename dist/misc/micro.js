@@ -41,6 +41,7 @@ console.log('Recording started');
 // real time log datastream
 recording.stream().on('data', (data) => {
     try {
+        console.log('data:', data.length);
         const data1 = data.slice(0, 32);
         // Decode 16-bit PCM to Float32
         const dataArr = new Float32Array(data1.length / 2); // Divide by 2 for 16-bit PCM
