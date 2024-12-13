@@ -35,6 +35,6 @@
     "node-microphone": "^0.1.6",
     "node-record-lpcm16": "^1.0.1",
     "rpi-ws281x": "^1.0.36",
-    "rpi-ws281x-native": "^1.0.4"
+    "rpi-ws281x-native": "0.1.0"
   }
 }
