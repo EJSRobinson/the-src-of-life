@@ -4,21 +4,20 @@ import * as recorder from 'node-record-lpcm16';
 import { fft, util } from 'fft-js';
 // import * as fs from 'fs';
 
-import * as ws281x from 'rpi-ws281x';
+import * as ws281x from 'rpi-ws281x-native';
 
 const ledLength = 194;
 
-const strip = ws281x.configure({
-  stripType: 'grb',
+const channel = ws281x(ledLength, {
+  stripType: ws281x.stripType.WS2811,
   gpio: 21,
   brightness: 255,
-  leds: ledLength,
 });
 
 // this funtion render different colour flashes at random locations, the probability of each colour is determined by vars a, b, c, d which takes values 0 - 1
 const renderSparks = (a: number, b: number, c: number, d: number) => {
-  const colorArray = new Uint32Array(ledLength);
-  for (let i = 0; i < ledLength; i++) {
+  const colorArray = channel.array;
+  for (let i = 0; i < channel.count; i++) {
     colorArray[i] = 0x000000;
     const rand = Math.random();
     if (rand < a) {
@@ -31,7 +30,7 @@ const renderSparks = (a: number, b: number, c: number, d: number) => {
       colorArray[i] = 0xff00ff;
     }
   }
-  strip.render(colorArray);
+  ws281x.render(colorArray);
 };
 
 const resolution = 2048;
