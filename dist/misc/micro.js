@@ -57,7 +57,9 @@ function drawVuMeter(bins) {
         const barLength = Math.floor(magnitude * width); // Scale magnitude to 20 rows
         const color = COLORS[index % COLORS.length]; // Cycle through colors
         // Draw the bar
-        console.log(`${color}${' '.repeat(barLength)}${RESET_COLOR} ${bin.f.toFixed(1)} Hz`);
+        // console.log(`${color}${' '.repeat(barLength)}${RESET_COLOR} ${bin.f.toFixed(1)} Hz`);
+        // draw freq first and then bar, pad freq with spaces to its always the same width
+        console.log(`${bin.f.toFixed(1).padStart(6, ' ')} ${color}${' '.repeat(barLength)}${RESET_COLOR}`);
     });
 }
 // real time log datastream
