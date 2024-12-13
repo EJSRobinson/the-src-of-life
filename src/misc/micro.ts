@@ -34,13 +34,11 @@ function drawVuMeter(bins: { f: number; mag: number }[]) {
 
   bins.forEach((bin, index) => {
     const magnitude = Math.min(Math.max(bin.mag, 0), 1); // Clamp magnitude between 0 and 1
-    const barLength = Math.floor(magnitude * 20); // Scale magnitude to 20 rows
+    const barLength = Math.floor(magnitude * 40); // Scale magnitude to 20 rows
     const color = COLORS[index % COLORS.length]; // Cycle through colors
 
     // Draw the bar
-    console.log(
-      `${color}${' '.repeat(barLength)}${RESET_COLOR} Bin ${index + 1} (${bin.f.toFixed(1)} Hz)`,
-    );
+    console.log(`${color}${' '.repeat(barLength)}${RESET_COLOR} ${bin.f.toFixed(1)} Hz`);
   });
 }
 
