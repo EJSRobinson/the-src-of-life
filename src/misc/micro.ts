@@ -6,7 +6,7 @@ import { fft, util } from 'fft-js';
 
 // const file = fs.createWriteStream('output.wav', { encoding: 'binary' });
 
-const resolution = 1024;
+const resolution = 2048;
 const cap = 75;
 const width = 150;
 
@@ -15,7 +15,7 @@ const opts = {
   channels: 1,
   recorder: 'arecord',
   device: 'hw:1,0',
-  bufferSize: 1024,
+  bufferSize: 2048,
 };
 
 const recording = recorder.record(opts);
