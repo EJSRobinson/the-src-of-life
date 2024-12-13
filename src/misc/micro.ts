@@ -21,6 +21,7 @@ console.log('Recording started');
 // real time log datastream
 recording.stream().on('data', (data: Buffer) => {
   // fft each data
+  console.log(data.length);
   const dataArr = Array.from(data);
   console.log(dataArr.length, dataArr);
   const phasors = fft(dataArr);
