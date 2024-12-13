@@ -36,6 +36,10 @@ const recording = recorder.record({
 });
 console.log('Recording started');
 recording.stream().pipe(file);
+// real time log datastream
+recording.stream().on('data', (data) => {
+    console.log(data);
+});
 recording.stream().on('error', (err) => {
     console.error('recorder threw an error:', err);
 });
