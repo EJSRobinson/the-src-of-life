@@ -80,28 +80,30 @@ while (COLORS.length > 110) {
   COLORS.pop();
 }
 
+console.log(COLORS);
+
 function resizeToPowerOfTwo(arr: Float32Array): Float32Array {
   const length = arr.length;
   const powerOfTwo = Math.pow(2, Math.floor(Math.log2(length))); // Nearest lower power of two
   return arr.slice(0, powerOfTwo);
 }
 
-function drawVuMeter(bins: { f: number; mag: number }[]) {
-  console.log(CLEAR_SCREEN); // Clear the screen
+// function drawVuMeter(bins: { f: number; mag: number }[]) {
+//   console.log(CLEAR_SCREEN); // Clear the screen
 
-  bins.forEach((bin, index) => {
-    const magnitude = Math.min(Math.max(bin.mag, 0), 1); // Clamp magnitude between 0 and 1
-    const barLength = Math.floor(magnitude * width); // Scale magnitude to 20 rows
-    const color = COLORS[index % COLORS.length]; // Cycle through colors
+//   bins.forEach((bin, index) => {
+//     const magnitude = Math.min(Math.max(bin.mag, 0), 1); // Clamp magnitude between 0 and 1
+//     const barLength = Math.floor(magnitude * width); // Scale magnitude to 20 rows
+//     const color = COLORS[index % COLORS.length]; // Cycle through colors
 
-    // Draw the bar
-    // console.log(`${color}${' '.repeat(barLength)}${RESET_COLOR} ${bin.f.toFixed(1)} Hz`);
-    // draw freq first and then bar, pad freq with spaces to its always the same width
-    console.log(
-      `${bin.f.toFixed(1).padStart(6, ' ')} ${color}${' '.repeat(barLength)}${RESET_COLOR}`,
-    );
-  });
-}
+//     // Draw the bar
+//     // console.log(`${color}${' '.repeat(barLength)}${RESET_COLOR} ${bin.f.toFixed(1)} Hz`);
+//     // draw freq first and then bar, pad freq with spaces to its always the same width
+//     console.log(
+//       `${bin.f.toFixed(1).padStart(6, ' ')} ${color}${' '.repeat(barLength)}${RESET_COLOR}`,
+//     );
+//   });
+// }
 
 // real time log datastream
 recording.stream().on('data', (data: Buffer) => {
@@ -139,7 +141,7 @@ recording.stream().on('data', (data: Buffer) => {
       const avgMagnitude = bin.reduce((acc, val) => acc + val.magnitude, 0) / bin.length;
       bins.push({ f: avgFrequency, mag: avgMagnitude });
     }
-    drawVuMeter(bins.slice(0, cap)); // Update the visualization
+    // drawVuMeter(bins.slice(0, cap)); // Update the visualization
   } catch (error) {
     console.error('Error processing audio data:', error);
   }
