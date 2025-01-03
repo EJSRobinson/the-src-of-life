@@ -277,5 +277,7 @@ setInterval(() => {
         element: null,
         subject: exports.roomTree,
     });
-    wave(1000 / 30, 0x0000ff);
+    // generate random color
+    const color = Math.floor(Math.random() * 0xffffff);
+    wave(1000 / 30, color);
 }, 1100);
