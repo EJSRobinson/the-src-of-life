@@ -26,7 +26,24 @@ console.log('Recording started');
 
 const CLEAR_SCREEN = '\x1b[2J\x1b[H';
 const RESET_COLOR = '\x1b[0m';
-const COLORS = ['\x1b[41m', '\x1b[42m', '\x1b[43m', '\x1b[44m', '\x1b[45m', '\x1b[46m']; // Background colors
+const COLORS = [
+  '\x1b[41m', // Red
+  '\x1b[42m', // Green
+  '\x1b[43m', // Yellow
+  '\x1b[44m', // Blue
+  '\x1b[45m', // Magenta
+  '\x1b[46m', // Cyan
+  '\x1b[47m', // White
+  '\x1b[40m', // Black
+  '\x1b[100m', // Bright Black
+  '\x1b[101m', // Bright Red
+  '\x1b[102m', // Bright Green
+  '\x1b[103m', // Bright Yellow
+  '\x1b[104m', // Bright Blue
+  '\x1b[105m', // Bright Magenta
+  '\x1b[106m', // Bright Cyan
+  '\x1b[107m', // Bright White
+];
 
 function resizeToPowerOfTwo(arr: Float32Array): Float32Array {
   const length = arr.length;

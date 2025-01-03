@@ -44,7 +44,24 @@ const recording = recorder.record(opts);
 console.log('Recording started');
 const CLEAR_SCREEN = '\x1b[2J\x1b[H';
 const RESET_COLOR = '\x1b[0m';
-const COLORS = ['\x1b[41m', '\x1b[42m', '\x1b[43m', '\x1b[44m', '\x1b[45m', '\x1b[46m']; // Background colors
+const COLORS = [
+    '\x1b[41m',
+    '\x1b[42m',
+    '\x1b[43m',
+    '\x1b[44m',
+    '\x1b[45m',
+    '\x1b[46m',
+    '\x1b[47m',
+    '\x1b[40m',
+    '\x1b[100m',
+    '\x1b[101m',
+    '\x1b[102m',
+    '\x1b[103m',
+    '\x1b[104m',
+    '\x1b[105m',
+    '\x1b[106m',
+    '\x1b[107m', // Bright White
+];
 function resizeToPowerOfTwo(arr) {
     const length = arr.length;
     const powerOfTwo = Math.pow(2, Math.floor(Math.log2(length))); // Nearest lower power of two
