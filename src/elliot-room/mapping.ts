@@ -288,7 +288,10 @@ setInterval(() => {
     element: null,
     subject: roomTree,
   });
-  // generate random color
-  const color = Math.floor(Math.random() * 0xffffff);
+  // generate random color by randomizing the red, green, and blue values
+  const red = Math.floor(Math.random() * 255);
+  const green = Math.floor(Math.random() * 255);
+  const blue = Math.floor(Math.random() * 255);
+  const color = (red << 16) | (green << 8) | blue;
   wave(1000 / 30, color);
 }, 1100);
