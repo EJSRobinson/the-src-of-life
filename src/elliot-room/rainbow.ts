@@ -37,7 +37,8 @@ export function rainbow(
     for (let i = 0; i < channel.count; i++) {
       colorArray[i] = colorwheel((offset + i) % 256);
     }
-    offset = (offset + 1) % channel.count;
+    // offset = (offset + 1) % channel.count;
+    offset = offset + 1;
     ws281x.render(colorArray);
   }, 1000 / speed);
 }
