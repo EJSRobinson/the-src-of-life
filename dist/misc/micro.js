@@ -44,53 +44,53 @@ const recording = recorder.record(opts);
 console.log('Recording started');
 const CLEAR_SCREEN = '\x1b[2J\x1b[H';
 const RESET_COLOR = '\x1b[0m';
-// const COLORS = [
-//   '\x1b[41m', // Red
-//   '\x1b[42m', // Green
-//   '\x1b[43m', // Yellow
-//   '\x1b[44m', // Blue
-//   '\x1b[45m', // Magenta
-//   '\x1b[46m', // Cyan
-//   '\x1b[101m', // Bright Red
-//   '\x1b[102m', // Bright Green
-//   '\x1b[103m', // Bright Yellow
-//   '\x1b[104m', // Bright Blue
-//   '\x1b[105m', // Bright Magenta
-//   '\x1b[106m', // Bright Cyan
-// ];
-const COLORS = [];
-// Function to interpolate colors between two RGB points
-function interpolateColors(start, end, steps) {
-    const colors = [];
-    for (let i = 0; i < steps; i++) {
-        const r = Math.round(start[0] + ((end[0] - start[0]) * i) / (steps - 1));
-        const g = Math.round(start[1] + ((end[1] - start[1]) * i) / (steps - 1));
-        const b = Math.round(start[2] + ((end[2] - start[2]) * i) / (steps - 1));
-        const a = `\x1b[38;2;${r};${g};${b}m`;
-        colors.push(a);
-    }
-    return colors;
-}
-// Rainbow color stops (red, orange, yellow, green, blue, indigo, violet)
-const rainbowStops = [
-    [255, 0, 0],
-    [255, 127, 0],
-    [255, 255, 0],
-    [0, 255, 0],
-    [0, 0, 255],
-    [75, 0, 130],
-    [148, 0, 211], // Violet
+const COLORS = [
+    '\x1b[41m',
+    '\x1b[42m',
+    '\x1b[43m',
+    '\x1b[44m',
+    '\x1b[45m',
+    '\x1b[46m',
+    '\x1b[101m',
+    '\x1b[102m',
+    '\x1b[103m',
+    '\x1b[104m',
+    '\x1b[105m',
+    '\x1b[106m', // Bright Cyan
 ];
-// Generate the colors, interpolating between stops
-const colorsPerSegment = Math.ceil(110 / (rainbowStops.length - 1));
-for (let i = 0; i < rainbowStops.length - 1; i++) {
-    const segmentColors = interpolateColors(rainbowStops[i], rainbowStops[i + 1], colorsPerSegment);
-    COLORS.push(...segmentColors);
-}
-// Trim the array to exactly 110 colors
-while (COLORS.length > 110) {
-    COLORS.pop();
-}
+// const COLORS: any[] = [];
+// Function to interpolate colors between two RGB points
+// function interpolateColors(start, end, steps) {
+//   const colors: any[] = [];
+//   for (let i = 0; i < steps; i++) {
+//     const r = Math.round(start[0] + ((end[0] - start[0]) * i) / (steps - 1));
+//     const g = Math.round(start[1] + ((end[1] - start[1]) * i) / (steps - 1));
+//     const b = Math.round(start[2] + ((end[2] - start[2]) * i) / (steps - 1));
+//     const a: any = `\x1b[38;2;${r};${g};${b}m`;
+//     colors.push(a);
+//   }
+//   return colors;
+// }
+// Rainbow color stops (red, orange, yellow, green, blue, indigo, violet)
+// const rainbowStops = [
+//   [255, 0, 0], // Red
+//   [255, 127, 0], // Orange
+//   [255, 255, 0], // Yellow
+//   [0, 255, 0], // Green
+//   [0, 0, 255], // Blue
+//   [75, 0, 130], // Indigo
+//   [148, 0, 211], // Violet
+// ];
+// // Generate the colors, interpolating between stops
+// const colorsPerSegment = Math.ceil(110 / (rainbowStops.length - 1));
+// for (let i = 0; i < rainbowStops.length - 1; i++) {
+//   const segmentColors = interpolateColors(rainbowStops[i], rainbowStops[i + 1], colorsPerSegment);
+//   COLORS.push(...segmentColors);
+// }
+// // Trim the array to exactly 110 colors
+// while (COLORS.length > 110) {
+//   COLORS.pop();
+// }
 // console.log(COLORS);
 function resizeToPowerOfTwo(arr) {
     const length = arr.length;
