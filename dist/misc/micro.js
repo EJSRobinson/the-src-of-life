@@ -31,7 +31,7 @@ const fft_js_1 = require("fft-js");
 // const file = fs.createWriteStream('output.wav', { encoding: 'binary' });
 const resolution = 512;
 const cap = 110;
-const width = 550;
+const width = 560;
 const opts = {
     sampleRate: 44100,
     channels: 1,
