@@ -8,7 +8,7 @@ import { fft, util } from 'fft-js';
 
 const resolution = 512;
 const cap = 110;
-const width = 500;
+const width = 550;
 
 const opts = {
   sampleRate: 44100,
