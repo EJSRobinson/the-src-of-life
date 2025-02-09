@@ -4,3 +4,4 @@ export type tree = {
     branches: tree[] | null;
 };
 export declare const roomTree: tree;
+export declare const wave: (timestep: number, color: number) => Promise<void>;

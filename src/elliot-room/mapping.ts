@@ -232,8 +232,8 @@ let cursors: cursor[] = [];
 
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const wave = async (timestep: number, color: number) => {
-  console.log('Start Loop');
+export const wave = async (timestep: number, color: number) => {
+  // console.log('Start Loop');
   while (cursors.length > 0) {
     const colorArray = channel.array;
     let deleteMarkedCursors: number[] = [];
@@ -283,15 +283,15 @@ const wave = async (timestep: number, color: number) => {
   }
 };
 
-setInterval(() => {
-  cursors.push({
-    element: null,
-    subject: roomTree,
-  });
-  // generate random color by randomizing the red, green, and blue values
-  const red = Math.floor(Math.random() * 255);
-  const green = Math.floor(Math.random() * 255);
-  const blue = Math.floor(Math.random() * 255);
-  const color = (red << 16) | (green << 8) | blue;
-  wave(1000 / 30, color);
-}, 1100);
+// setInterval(() => {
+//   cursors.push({
+//     element: null,
+//     subject: roomTree,
+//   });
+//   // generate random color by randomizing the red, green, and blue values
+//   const red = Math.floor(Math.random() * 255);
+//   const green = Math.floor(Math.random() * 255);
+//   const blue = Math.floor(Math.random() * 255);
+//   const color = (red << 16) | (green << 8) | blue;
+//   wave(1000 / 30, color);
+// }, 1100);

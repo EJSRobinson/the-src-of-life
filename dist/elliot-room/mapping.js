@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.roomTree = void 0;
+exports.wave = exports.roomTree = void 0;
 exports.roomTree = {
     label: 'root',
     stem: [],
@@ -222,7 +222,7 @@ const channel = (0, rpi_ws281x_native_1.default)(ledLength, {
 let cursors = [];
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const wave = async (timestep, color) => {
-    console.log('Start Loop');
+    // console.log('Start Loop');
     while (cursors.length > 0) {
         const colorArray = channel.array;
         let deleteMarkedCursors = [];
@@ -272,15 +272,16 @@ const wave = async (timestep, color) => {
         }
     }
 };
-setInterval(() => {
-    cursors.push({
-        element: null,
-        subject: exports.roomTree,
-    });
-    // generate random color by randomizing the red, green, and blue values
-    const red = Math.floor(Math.random() * 255);
-    const green = Math.floor(Math.random() * 255);
-    const blue = Math.floor(Math.random() * 255);
-    const color = (red << 16) | (green << 8) | blue;
-    wave(1000 / 30, color);
-}, 1100);
+exports.wave = wave;
+// setInterval(() => {
+//   cursors.push({
+//     element: null,
+//     subject: roomTree,
+//   });
+//   // generate random color by randomizing the red, green, and blue values
+//   const red = Math.floor(Math.random() * 255);
+//   const green = Math.floor(Math.random() * 255);
+//   const blue = Math.floor(Math.random() * 255);
+//   const color = (red << 16) | (green << 8) | blue;
+//   wave(1000 / 30, color);
+// }, 1100);
