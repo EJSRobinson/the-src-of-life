@@ -21,6 +21,9 @@ const traverseBranch = (branch, searchIndex, runningIndex) => {
         }
         runningIndex++;
     }
+    if (branch.branches === null) {
+        return null;
+    }
     for (let i = 0; i < branch.branches.length; i++) {
         const result = traverseBranch(branch.branches[i], searchIndex, runningIndex);
         if (result !== null) {
