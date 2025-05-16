@@ -4,7 +4,7 @@ import { rainbow } from './rainbow';
 import ws281x from 'rpi-ws281x-native';
 
 const protocol = 'mqtts';
-const host = 'demo-datasource-01.mobiusflow.io';
+const host = 'demo-datasource-2.mobiusflow.io';
 const port = '8883';
 const clientId = `mqtt_${Math.random().toString(16).slice(3)}`;
 const connectUrl = `${protocol}://${host}:${port}`;
