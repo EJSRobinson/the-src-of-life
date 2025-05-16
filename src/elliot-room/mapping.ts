@@ -44,37 +44,37 @@ export const roomTree: tree = {
           stem: [46, 45, 44, 43, 42, 41],
           branches: [
             {
-              label: '1H',
+              label: '1.2.1',
               stem: [26, 27, 28, 29, 30, 31, 32, 33],
               branches: null,
             },
             {
-              label: '1I',
+              label: '1.2.2',
               stem: [40, 39, 38, 37, 36, 35, 34],
               branches: null,
             },
           ],
         },
         {
-          label: '1J',
+          label: '1.3',
           stem: [47, 48, 49, 50, 51, 52, 53, 54],
           branches: [
             {
-              label: '1.2.1',
+              label: '1.3.1',
               stem: [55, 56, 57, 58, 59],
               branches: null,
             },
             {
-              label: '1.2.2',
+              label: '1.3.2',
               stem: [68],
               branches: [
                 {
-                  label: '1.2.2.1',
+                  label: '1.3.2.1',
                   stem: [69, 70, 71, 72, 73],
                   branches: null,
                 },
                 {
-                  label: '1.2.2.2',
+                  label: '1.3.2.2',
                   stem: [67, 66, 65, 64, 63, 62, 61, 60],
                   branches: null,
                 },
